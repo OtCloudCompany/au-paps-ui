@@ -1,0 +1,433 @@
+// Add any global css for the theme here
+
+// imports the base global style
+@import '../../../styles/_global-styles.scss';
+:root {
+  --au-dark-green: #0e591a;
+  --au-light-green: #c3a466;
+  --au-red: #951f39;
+  --ds-header-icon-color: #000;
+  --ds-navbar-bg: var(--au-dark-green);
+  --ds-navbar-link-color: #fff;
+  --ds-thumbnail-max-width: 200px !important;
+}
+a{
+  color: #000 !important;
+}
+a:hover{
+  color: var(--au-light-green) !important;
+}
+.text-au-light-green {
+  color: var(--au-light-green);
+}
+.text-au-dark-green {
+  color: var(--au-dark-green);
+}
+.bg-au-light-green {
+  background-color: var(--au-light-green);
+}
+.bg-au-dark-green {
+  background-color: var(--au-dark-green);
+}
+.bg-au-red {
+  background-color: var(--au-red);
+}
+.text-au-red {
+  color: var(--au-red);
+}
+.hover-grey:hover{
+  background-color: #eee;
+}
+body {
+  font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
+  font-size: 16px;
+  line-height: 1.43;
+}
+#main-content.my-cs{
+  margin-top: 0 !important;
+}
+
+#main-navbar .ds-menu-item{
+  color: var(--ds-navbar-link-color) !important;
+}
+#main-navbar .ds-menu-item:hover{
+  color: var(--au-light-green) !important;
+}
+#main-navbar .fa-caret-down {
+  color: #fff;
+}
+.btn-primary {
+  background-color: var(--au-red);
+  border-color: var(--au-red);
+}
+.btn-primary:hover {
+  background-color: var(--au-light-green);
+  border-color: var(--au-light-green);
+}
+div#header-navbar-wrapper {
+  border-bottom: 1px var(--au-dark-green) solid !important;
+}
+.ds-menu-item-wrapper .dropdown-menu {
+  background-color: var(--au-dark-green) !important;
+}
+header {
+   background-color: #fff !important;
+ }
+ds-themed-search-form .scope-button:hover{
+  background-color: var(--au-light-green) !important;
+  border-color: var(--au-light-green) !important;
+}
+ds-themed-search-form .scope-button{
+  color: white;
+  background-color: var(--au-red);
+  border-color: var(--au-red);
+}
+#header-search form {
+  background-color: white;
+  padding: 2px;
+  border-radius: 4px;
+}
+#header-search form .form-group {
+  margin-bottom: 0 !important;
+}
+
+div.background-image {
+  color: #fff;
+  background-color: #000;
+  position: relative;
+  background-size: cover;
+  min-height: 350px;
+}
+div.background-image.background-image-1{
+  background-image: url(/assets/otcloud/images/news/au-1.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-2{
+  background-image: url(/assets/otcloud/images/news/au-2.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-3{
+  background-image: url(/assets/otcloud/images/news/au-3.jpg);
+  background-position: 50% 50%;
+}
+
+div.background-image.background-image-4{
+  background-image: url(/assets/otcloud/images/news/au-4.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-5{
+  background-image: url(/assets/otcloud/images/news/au-5.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-6{
+  background-image: url(/assets/otcloud/images/news/au-6.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-7{
+  background-image: url(/assets/otcloud/images/news/au-7.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-8{
+  background-image: url(/assets/otcloud/images/news/au-8.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-9{
+  background-image: url(/assets/otcloud/images/news/au-9.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-10{
+  background-image: url(/assets/otcloud/images/news/au-10.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-11{
+  background-image: url(/assets/otcloud/images/news/au-11.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-12{
+  background-image: url(/assets/otcloud/images/news/au-12.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-13{
+  background-image: url(/assets/otcloud/images/news/au-13.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-14{
+  background-image: url(/assets/otcloud/images/news/au-14.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-15{
+  background-image: url(/assets/otcloud/images/news/au-15.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-16{
+  background-image: url(/assets/otcloud/images/news/au-16.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-17{
+  background-image: url(/assets/otcloud/images/news/au-17.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-18{
+  background-image: url(/assets/otcloud/images/news/au-18.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-19{
+  background-image: url(/assets/otcloud/images/news/au-19.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-20{
+  background-image: url(/assets/otcloud/images/news/au-20.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-21{
+  background-image: url(/assets/otcloud/images/news/au-21.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-22{
+  background-image: url(/assets/otcloud/images/news/au-22.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-23{
+  background-image: url(/assets/otcloud/images/news/au-23.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-24{
+  background-image: url(/assets/otcloud/images/news/au-24.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-25{
+  background-image: url(/assets/otcloud/images/news/au-25.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-26{
+  background-image: url(/assets/otcloud/images/news/au-26.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-27{
+  background-image: url(/assets/otcloud/images/news/au-27.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-28{
+  background-image: url(/assets/otcloud/images/news/au-28.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-29{
+  background-image: url(/assets/otcloud/images/news/au-29.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-30{
+  background-image: url(/assets/otcloud/images/news/au-30.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-31{
+  background-image: url(/assets/otcloud/images/news/au-31.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-32{
+  background-image: url(/assets/otcloud/images/news/au-32.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-33{
+  background-image: url(/assets/otcloud/images/news/au-33.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-34{
+  background-image: url(/assets/otcloud/images/news/au-34.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-35{
+  background-image: url(/assets/otcloud/images/news/au-35.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-36{
+  background-image: url(/assets/otcloud/images/news/au-36.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-37{
+  background-image: url(/assets/otcloud/images/news/au-37.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-38{
+  background-image: url(/assets/otcloud/images/news/au-38.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-39{
+  background-image: url(/assets/otcloud/images/news/au-39.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-40{
+  background-image: url(/assets/otcloud/images/news/au-40.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-41{
+  background-image: url(/assets/otcloud/images/news/au-41.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-42{
+  background-image: url(/assets/otcloud/images/news/au-42.jpg);
+  background-position: 50% 50%;
+}
+div.background-image.background-image-43{
+  background-image: url(/assets/otcloud/images/news/au-43.jpg);
+  background-position: 50% 50%;
+}
+
+div.background-image .overlay {
+  background: #000;
+  background: -webkit-gradient(linear,left top,left bottom,from(transparent),color-stop(50%,transparent),color-stop(70%,rgba(0,0,0,.6110819328)),to(rgba(0,0,0,.75)));
+  background: linear-gradient(180deg,transparent,transparent 10%,rgba(0,0,0,.6110819328) 70%,rgba(0,0,0,.75));
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-top: 70px;
+}
+div.background-image .container {
+  text-shadow: 1px 1px 4px rgba(0,0,0,.6);
+}
+
+#header-navbar .navbar-product-name {
+  float: right;
+  //padding: 0;
+  margin-left: 10px;
+  text-transform: uppercase;
+}
+#header-navbar .navbar-product-name .product-name-primary {
+  display: block;
+  font-weight: bold;
+  font-size: 33px;
+  line-height: 24px;
+  margin-top: 0;
+  color: var(--au-light-green);
+}
+#header-navbar .navbar-product-name .product-name-secondary {
+  display: block;
+  color: var(--au-dark-green);
+  font-size: 20px;
+  margin-top: 1px;
+  padding-top: 0;
+  padding-left: 1px;
+}
+footer {
+ text-align: left !important;
+}
+footer a{
+  color: #fff !important;
+}
+.carousel-control-prev, .carousel-control-next {
+  top: auto !important;
+  bottom: auto !important;
+}
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23951f39' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e") !important;
+}
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23951f39' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5L4.25 4l2.5-2.5L5.25 0z'/%3e%3c/svg%3e") !important;
+}
+.carousel-indicators li {
+  background-color: var(--au-light-green) !important;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  opacity: 0.5;
+  transition: opacity 0.6s ease;
+}
+.carousel-indicators{
+  margin-top: 20px;
+}
+.carousel-inner {
+  padding-bottom: 60px;
+}
+
+/* Show dropdown on hover */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  border: none; margin-top: 0;
+}
+
+@media (min-width: 1140px) {
+
+}
+
+@media (max-width: 598.98px) {
+  #header-search, .mobile-hide {
+    display: none !important;
+  }
+  .mobile-show{
+    display: flex !important;
+  }
+}
+
+html[dir='ltr']{ // Non Arabic CSS
+  footer {
+    text-align: left !important;
+  }
+}
+
+html[dir='rtl']{ // Arabic CSS
+  footer {
+    text-align: right !important;
+  }
+  footer ul {
+    padding-inline-start: 0 !important;
+  }
+  body, .ar-align-right, .dropdown-item, #main-navbar .dropdown-menu {
+    text-align: right !important;
+  }
+  .flex-row {
+    //flex-direction: row-reverse !important;
+  }
+  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    text-align: right !important;
+  }
+  ds-badges .badge {
+    margin-left: 5px !important;
+  }
+  .mr-auto, .mx-auto {
+    margin-right: 0 !important;
+  }
+  .list-group-horizontal > .list-group-item + .list-group-item {
+    border-top-width: 1px !important;
+    border-left-width: 1px !important;
+  }
+  .list-group-horizontal > .list-group-item:last-child {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+  .list-group-horizontal > .list-group-item:first-child {
+    border-top-right-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+  ds-scope-selector-modal .modal-header {
+    flex-direction: row-reverse !important;
+  }
+  .clamp-default-1, .min{
+    background: none !important;
+  }
+  .facet-filter .filter-toggle {
+    text-align: left !important;
+  }
+  :focus .clamp-default-1 .content:after, .ds-hover .clamp-default-1 .content:after {
+    //background: linear-gradient(to right, rgba(255, 255, 255, 0), #f8f9fa 70%);
+    background: none !important;
+  }
+  .clamp-default-1 .content:after, .ds-hover .clamp-default-1 .content:after {
+    background: none !important;
+  }
+  .fa-chevron-left:before { // reverse the chevron left to right
+    content: "\f054" !important;
+  }
+  .fa-chevron-right:before {
+    content: "\f053" !important;
+  }
+  .margin-right {
+    margin-left: 0.5em;
+  }
+
+  .float-right {
+    float: left !important;
+  }
+}
+

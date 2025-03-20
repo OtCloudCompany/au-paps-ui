@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{"item.page.citeThisItem" | translate}}</h4>
+  <a type="button" class="btn-close" aria-label="Close"
+     (click)="activeModal.dismiss('Cross click')">
+    <i class="fas fa-close"></i>
+  </a>
+</div>
+<div class="modal-body">
+  <h4>{{title}}</h4>
+  <div class="form-row my-4 bg-au-light-green px-2 py-1 rounded">
+    <div class="col">
+      <label for="citationSelect" class="text-white">
+        <h5 class="mb-0 pt-2">{{ "item.page.selectFormat" | translate }} : </h5>
+      </label>
+    </div>
+    <div class="col">
+      <select class="form-control border-0" id="citationSelect" [(ngModel)]="selectedCitation"
+              (change)="updateCitation()">
+        <option value="APA">APA</option>
+        <option value="MLA">MLA</option>
+        <option value="Harvard">Harvard</option>
+        <option value="Vancouver">Vancouver</option>
+        <option value="iso690-2">ISO 690-2</option>
+        <option value="Chicago">Chicago</option>
+      </select>
+    </div>
+  </div>
+  <div [innerHTML]="currentCitation" class="p-2 bg-light"></div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn bg-au-light-green text-white"
+          (click)="activeModal.close('Close click')">Close
+  </button>
+</div>

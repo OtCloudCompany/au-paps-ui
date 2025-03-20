@@ -1,0 +1,205 @@
+<ds-results-back-button *ngIf="showBackButton$ | async" [back]="back"></ds-results-back-button>
+<div class="row" *ngIf="iiifEnabled">
+  <div class="col-12">
+    <ds-mirador-viewer id="iiif-viewer"
+                       [object]="object"
+                       [searchable]="iiifSearchEnabled"
+                       [query]="iiifQuery$ | async">
+    </ds-mirador-viewer>
+  </div>
+</div>
+
+<div class="d-flex flex-row">
+  <ds-item-page-title-field [item]="object" class="mr-auto">
+  </ds-item-page-title-field>
+  <ds-dso-edit-menu></ds-dso-edit-menu>
+</div>
+<div class="row mt-3">
+  <div class="col-xs-12 col-md-8">
+    <ul class="nav mb-3 border-bottom">
+      <li class="nav-item hover-grey">
+        <a class="nav-link" [routerLink]="[itemPageRoute + '/full']" role="button">
+          <i class="fas fa-info-circle"></i> {{"item.page.link.full" | translate }}
+        </a>
+      </li>
+      <li class="nav-item hover-grey">
+        <a class="nav-link" href="#" role="button" (click)="modalOpen()">
+          <i class="fas fa-quote-left"></i> {{"item.page.link.cite" | translate }}
+        </a>
+      </li>
+      <li class="nav-item hover-grey dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-expanded="false">
+          <i class="fas fa-share-from-square"></i> {{"item.page.link.share" | translate }}
+        </a>
+        <div class="dropdown-menu">
+          <a [href]="shareLinks.facebook" class="dropdown-item" target="_blank">
+            {{"item.page.link.facebook" | translate }}</a>
+          <a [href]="shareLinks.twitter" class="dropdown-item" target="_blank">
+            {{"item.page.link.twitter" | translate }}</a>
+          <a [href]="shareLinks.linkedin" class="dropdown-item" target="_blank">
+            {{"item.page.link.linkedin" | translate }}</a>
+          <a [href]="shareLinks.email" class="dropdown-item" target="_blank">
+            {{"item.page.link.email" | translate }}</a>
+        </div>
+      </li>
+      <li class="nav-item hover-grey dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-expanded="false">
+          <i class="fas fa-bookmark"></i> {{"item.page.link.bibliographic-managers" | translate }}
+        </a>
+        <div class="dropdown-menu">
+          <a href="http://www.mendeley.com/import/?url={{ handleIdentifier }}" class="dropdown-item"
+             target="_blank">Mendeley</a>
+          <a (click)="downloadCitation('endnote')" role="button" class="dropdown-item">EndNote</a>
+          <a (click)="downloadCitation('bibtex')" role="button" class="dropdown-item">BibTex</a>
+          <a (click)="downloadCitation('csv')" class="dropdown-item">CSV</a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="abstract-field simple-view-element mb-4" *ngIf="object.hasMetadata(['dc.description.abstract'])">
+      <ds-truncatable [showToggle]="true" [id]="'truncatable-abstract'">
+        <h2 class="simple-view-element-header">{{ "item.page.abstract" | translate}}</h2>
+        <ds-truncatable-part [minLines]="4" [showToggle]="true" [id]="'truncatable-abstract'">
+          <p class="justify-text simple-view-element-body">
+            {{ object.firstMetadataValue(['dc.description.abstract']) }}
+          </p>
+        </ds-truncatable-part>
+      </ds-truncatable>
+    </div>
+
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['dc.description']"
+                                [label]="'item.page.description'">
+    </ds-generic-item-page-field>
+
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['dc.subject']"
+                                [separator]="', '"
+                                [label]="'item.page.subject'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['dc.identifier.citation']"
+                                [label]="'item.page.citation'">
+    </ds-generic-item-page-field>
+    <ds-item-page-uri-field [item]="object"
+                            [fields]="['dc.identifier.uri']"
+                            [label]="'item.page.uri'">
+    </ds-item-page-uri-field>
+
+    <div class="my-4" *ngIf="reportsLoaded">
+      <h4 class="simple-view-element-header">{{ "item.page.usageStatistics" | translate }}</h4>
+      <ul ngbNav  #nav="ngbNav" class="nav-tabs">
+        <li [ngbNavItem]="1" >
+          <a ngbNavLink>{{ "item.page.visitsByMonth" | translate }}</a>
+          <ng-template ngbNavContent>
+            <div class="bg-light p-2">
+              <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
+                                style="width: 100%; height: 400px; display: block;">
+              </highcharts-chart>
+            </div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2" *ngIf="countriesTableData.length > 0">
+          <a ngbNavLink>{{ "item.page.topCountries" | translate }}</a>
+          <ng-template ngbNavContent>
+            <div id="countriesMapContainer" style="width: 100%;">
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                  <thead class="bg-light">
+                  <th>#</th><th>{{ "item.page.country" | translate }}</th>
+                  <th>{{ "item.page.views" | translate }}</th>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let country of countriesTableData; ">
+                    <td>{{ country['indexNum'] }}</td>
+                    <td>{{ country['countryLabel'] }}</td>
+                    <td>{{ country['value'] }}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="bg-light p-2">
+                <highcharts-chart [Highcharts]="Highcharts"
+                                  [constructorType]="'mapChart'"
+                                  [options]="mapChartOptions"
+                                  style="width: 100%; height: 400px; display: block;">
+                </highcharts-chart>
+              </div>
+
+            </div>
+
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="3" *ngIf="cityViews.length > 0">
+          <a ngbNavLink>{{ "item.page.topCities" | translate }}</a>
+          <ng-template ngbNavContent>
+            <div id="citiesMapContainer" style="width: 100%;">
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                  <thead class="bg-light">
+                  <th>#</th><th>{{ "item.page.city" | translate }}</th>
+                  <th>{{ "item.page.views" | translate }}</th>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let city of citiesTableData; ">
+                    <td>{{ city['indexNum'] }}</td>
+                    <td>{{ city['cityLabel'] }}</td>
+                    <td>{{ city['value'] }}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div><!-- .table-responsive -->
+              <div class="bg-light p-2">
+                <highcharts-chart
+                  [Highcharts]="Highcharts"
+                  [options]="citiesBarGraphOptions"
+                  style="width: 100%; height: 400px; display: block;">
+                </highcharts-chart>
+              </div>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-3 bg-light pt-3">
+    <div class="p-3 mb-3 d-flex justify-content-center">
+      <ng-container *ngIf="!(mediaViewer.image || mediaViewer.video)">
+        <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+          <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+        </ds-metadata-field-wrapper>
+      </ng-container>
+      <div *ngIf="mediaViewer.image || mediaViewer.video" class="mb-2">
+        <ds-media-viewer [item]="object"></ds-media-viewer>
+      </div>
+    </div>
+    <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+
+    <ul class="list-group my-4" *ngIf="reportsLoaded">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ "item.page.totalViews" | translate }}
+        <span class="sr-only">{{ "item.page.totalViews" | translate }}</span>
+        <span class="badge bg-au-light-green badge-pill text-white">{{ totalViews }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ "item.page.totalDownloads" | translate }}
+        <span class="sr-only">{{ "item.page.totalDownloads" | translate }}</span>
+        <span class="badge bg-au-light-green badge-pill text-white">{{ totalDownloads }}</span>
+      </li>
+    </ul>
+
+    <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
+    <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
+                                     [parentItem]="object"
+                                     [itemType]="'Person'"
+                                     [metadataFields]="['dc.contributor.author', 'dc.creator']"
+                                     [label]="'relationships.isAuthorOf' | translate">
+    </ds-metadata-representation-list>
+
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['dc.publisher']"
+                                [label]="'item.page.publisher'">
+    </ds-generic-item-page-field>
+  </div>
+</div>

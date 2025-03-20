@@ -1,0 +1,81 @@
+<footer class="text-lg-start text-white">
+  <div class="bg-au-dark-green py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-pad">
+            <h4> Contact Info</h4>
+            <p>
+              African Union Headquarters <br>
+              P. O. Box 3243 <br>
+              Roosevelt Street W21K19 <br>
+              Addis Ababa, Ethiopia <br>
+              Email: SituationRoom&#64;africa-union.org
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-pad">
+            <h4> Follow Us</h4>
+            <div>
+              <h2 class="social-media-icons">
+                <a class="mx-1" title="Twitter" href="http://twitter.com/_AfricanUnion">
+                  <i class="fab fa-twitter fa-sm text-au-light-green"></i>
+                  <span class="sr-only">Twitter</span>
+                </a>
+                <a class="mx-1" title="Facebook" href="http://www.facebook.com/pages/Addis-Ababa-Ethiopia/African-Union/454340075407">
+                  <em class="fab fa-facebook fa-sm text-au-light-green"></em>
+                  <span class="sr-only">Facebook</span></a>
+                <a class="mx-1" title="Flickr" href="http://www.flickr.com/photos/africanunioncommission/">
+                  <em class="fab fa-flickr fa-sm text-au-light-green"></em>
+                  <span class="sr-only">Flickr</span>
+                </a>
+                <a class="mx-1" title="YouTube" href="http://www.youtube.com/AUCommission">
+                  <em class="fab fa-youtube fa-sm text-au-light-green"></em>
+                  <span class="sr-only">YouTube</span>
+                </a>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-pad">
+            <h4> Help & Support </h4>
+            <ul class="list-unstyled">
+              <li> <a routerLink="/info/feedback"> Give Feedback </a> </li>
+              <li> <a routerLink="/info/privacy">Privacy Policy</a></li>
+              <li> <a routerLink="/info/end-user-agreement">End User Agreement</a></li>
+              <li> <a routerLink="/info/privacy">Privacy Policy</a></li>
+              <li>
+                <button class="btn btn-link text-white" type="button" (click)="showCookieSettings()">
+                  {{ 'footer.link.cookies' | translate}}
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h4> Quick Links </h4>
+          <ul class="list-unstyled">
+            <li> <a href="https://www.peaceau.org/en/" target="_blank"> PAPS </a> </li>
+            <li> <a href="https://au.int/en" target="_blank">African Union </a> </li>
+            <li> <a href="https://au.int/en/agenda2063" target="_blank">Agenda 2063 </a> </li>
+            <li> <a href="https://au.int/en/member_states/countryprofiles2" target="_blank">Member States </a> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid bg-au-red">
+    <div class="container">
+      <div class="border-top-0">
+        <div class="copy">
+          <p class="py-4 text-center">
+            Copyright
+            {{ 'footer.copyright' | translate:{year: dateObj | date:'y'} }} -
+            All Rights Reserved by the African Union Department of Political Affairs, Peace and Security </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

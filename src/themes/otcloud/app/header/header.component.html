@@ -1,0 +1,29 @@
+<header>
+  <div class="container">
+    <div class="d-flex flex-row justify-content-between" id="header-navbar">
+      <a class="navbar-brand my-2" routerLink="/home">
+        <img src="assets/otcloud/images/auweblogo-en.png" [attr.alt]="'menu.header.image.logo' | translate"/>
+        <div class="navbar-product-name mb-0">
+          <span class="product-name-primary">PAPS</span>
+          <span class="product-name-secondary">DIGITAL REPOSITORY</span>
+        </div>
+      </a>
+
+
+      <nav role="navigation" [attr.aria-label]="'nav.user.description' | translate" class="navbar navbar-expand-md flex-shrink-0 px-0">
+        <ds-search-navbar></ds-search-navbar>
+        <ds-lang-switch></ds-lang-switch>
+        <ds-context-help-toggle></ds-context-help-toggle>
+        <ds-auth-nav-menu></ds-auth-nav-menu>
+        <ds-impersonate-navbar></ds-impersonate-navbar>
+        <div *ngIf="isMobile$ | async" class="pl-2">
+          <button class="navbar-toggler px-0" type="button" (click)="toggleNavbar()"
+                  aria-controls="collapsingNav"
+                  aria-expanded="false" [attr.aria-label]="'nav.toggle' | translate">
+            <span class="fas fa-bars fa-fw toggler-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
