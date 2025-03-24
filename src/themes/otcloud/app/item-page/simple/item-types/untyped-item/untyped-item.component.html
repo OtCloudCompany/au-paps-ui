@@ -66,25 +66,124 @@
         </ds-truncatable-part>
       </ds-truncatable>
     </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.description'])">
+        <ds-generic-item-page-field [item]="object"
+                                    [fields]="['dc.description']"
+                                    [label]="'item.page.description'">
+        </ds-generic-item-page-field>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.subject'])">
+        <div class="simple-view-element mb-3">
+          <h2 class="simple-view-element-header">
+            {{ "item.page.subject" | translate }}
+          </h2>
+          <div class="simple-view-element-body">
+            <ng-container *ngFor="let mdValue of object.allMetadataValues(['dc.subject']); let last=last;">
+            <span class="dont-break-out preserve-line-breaks">
+              <a routerLink="/browse/subject?startsWith={{ encodeURI(mdValue) }}">{{ mdValue }}</a>
+            </span>
+              <ng-container *ngIf="!last">
+                <span class="separator">; </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.format.extent'])">
+        <ds-generic-item-page-field [item]="object"
+                                [fields]="['dc.format.extent']"
+                                [label]="'item.page.extent'">
+        </ds-generic-item-page-field>
+      </div>
+      <div class="col-sm-12 col-md-12" *ngIf="object.hasMetadata(['dc.identifier.uri'])">
+        <ds-item-page-uri-field [item]="object"
+                                [fields]="['dc.identifier.uri']"
+                                [label]="'item.page.uri'">
+        </ds-item-page-uri-field>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.format.medium'])">
+        <ds-generic-item-page-field [item]="object"
+                                [fields]="['dc.format.medium']"
+                                [label]="'item.page.format'">
+        </ds-generic-item-page-field>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.language.iso'])">
+        <div class="simple-view-element mb-3">
+          <h2 class="simple-view-element-header">
+            {{ "item.page.language" | translate }}
+          </h2>
+          <div class="simple-view-element-body">
+            <ng-container *ngFor="let mdValue of object.allMetadataValues(['dc.language.iso']); let last=last;">
+            <span class="dont-break-out preserve-line-breaks">
+              <a routerLink="/browse/language?startsWith={{ encodeURI(mdValue) }}">{{ mdValue }}</a>
+            </span>
+              <ng-container *ngIf="!last">
+                <span class="separator">; </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.relation.ispartofseries'])">
+        <div class="simple-view-element mb-3">
+          <h2 class="simple-view-element-header">
+            {{ "item.page.series" | translate }}
+          </h2>
+          <div class="simple-view-element-body">
+            <ng-container *ngFor="let mdValue of object.allMetadataValues(['dc.relation.ispartofseries']); let last=last;">
+          <span class="dont-break-out preserve-line-breaks">
+            <a routerLink="/browse/series?startsWith={{ encodeURI(mdValue) }}">{{ mdValue }}</a>
+          </span>
+              <ng-container *ngIf="!last">
+                <span class="separator">; </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['aupaps.identifier.reference'])">
+        <div class="simple-view-element mb-3">
+          <h2 class="simple-view-element-header">
+            {{ "item.page.reference" | translate }}
+          </h2>
+          <div class="simple-view-element-body">
+            <ng-container *ngFor="let mdValue of object.allMetadataValues(['aupaps.meeting.country']); let last=last;">
+            <span class="dont-break-out preserve-line-breaks">
+              <a routerLink="/browse/reference?startsWith={{ encodeURI(mdValue) }}">{{ mdValue }}</a>
+            </span>
+              <ng-container *ngIf="!last">
+                <span class="separator">; </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['aupaps.meeting.chair'])">
+        <ds-generic-item-page-field [item]="object"
+                                [fields]="['aupaps.meeting.chair']"
+                                [label]="'item.page.chair'">
+        </ds-generic-item-page-field>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['aupaps.meeting.country'])">
+        <div class="simple-view-element mb-3">
+          <h2 class="simple-view-element-header">
+            {{ "item.page.country" | translate }}
+          </h2>
+          <div class="simple-view-element-body">
+            <ng-container *ngFor="let mdValue of object.allMetadataValues(['aupaps.meeting.country']); let last=last;">
+          <span class="dont-break-out preserve-line-breaks">
+            <a routerLink="/browse/country?startsWith={{ encodeURI(mdValue) }}">{{ mdValue }}</a>
+          </span>
+              <ng-container *ngIf="!last">
+                <span class="separator">; </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['dc.description']"
-                                [label]="'item.page.description'">
-    </ds-generic-item-page-field>
-
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['dc.subject']"
-                                [separator]="', '"
-                                [label]="'item.page.subject'">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['dc.identifier.citation']"
-                                [label]="'item.page.citation'">
-    </ds-generic-item-page-field>
-    <ds-item-page-uri-field [item]="object"
-                            [fields]="['dc.identifier.uri']"
-                            [label]="'item.page.uri'">
-    </ds-item-page-uri-field>
 
     <div class="my-4" *ngIf="reportsLoaded">
       <h4 class="simple-view-element-header">{{ "item.page.usageStatistics" | translate }}</h4>
@@ -164,28 +263,38 @@
     </div>
   </div>
   <div class="col-xs-12 col-md-3 bg-light pt-3">
-    <div class="p-3 mb-3 d-flex justify-content-center">
-      <ng-container *ngIf="!(mediaViewer.image || mediaViewer.video)">
-        <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
-          <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
-        </ds-metadata-field-wrapper>
-      </ng-container>
-      <div *ngIf="mediaViewer.image || mediaViewer.video" class="mb-2">
-        <ds-media-viewer [item]="object"></ds-media-viewer>
+    <div class="card d-flex justify-content-center">
+      <div class="card-header">
+        <h3 class="card-title mb-0">{{ "item.page.files" | translate }}</h3>
+      </div>
+      <div class="card-body p-0">
+        <div class="justify-content-center d-flex mt-3">
+          <ng-container *ngIf="!(mediaViewer.image || mediaViewer.video)">
+            <ds-metadata-field-wrapper [class]="'mb-0 pb-0'" [hideIfNoTextContent]="false">
+              <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+            </ds-metadata-field-wrapper>
+          </ng-container>
+          <div *ngIf="mediaViewer.image || mediaViewer.video" class="mb-2">
+            <ds-media-viewer [item]="object"></ds-media-viewer>
+          </div>
+        </div>
+        <div class="file-section-wrapper">
+          <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+        </div>
       </div>
     </div>
-    <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+
 
     <ul class="list-group my-4" *ngIf="reportsLoaded">
       <li class="list-group-item d-flex justify-content-between align-items-center">
         {{ "item.page.totalViews" | translate }}
         <span class="sr-only">{{ "item.page.totalViews" | translate }}</span>
-        <span class="badge bg-au-light-green badge-pill text-white">{{ totalViews }}</span>
+        <span class="badge bg-au-red badge-pill text-white">{{ totalViews }}</span>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-center">
         {{ "item.page.totalDownloads" | translate }}
         <span class="sr-only">{{ "item.page.totalDownloads" | translate }}</span>
-        <span class="badge bg-au-light-green badge-pill text-white">{{ totalDownloads }}</span>
+        <span class="badge bg-au-red badge-pill text-white">{{ totalDownloads }}</span>
       </li>
     </ul>
 

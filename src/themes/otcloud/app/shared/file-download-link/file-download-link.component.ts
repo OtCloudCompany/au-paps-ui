@@ -12,9 +12,7 @@ import { FileDownloadLinkComponent as BaseComponent } from '../../../../../app/s
 
 @Component({
   selector: 'ds-themed-file-download-link',
-  // templateUrl: './file-download-link.component.html',
-  templateUrl: '../../../../../app/shared/file-download-link/file-download-link.component.html',
-  // styleUrls: ['./file-download-link.component.scss'],
+  templateUrl: './file-download-link.component.html',
   styleUrls: ['../../../../../app/shared/file-download-link/file-download-link.component.scss'],
   standalone: true,
   imports: [RouterLink, NgClass, NgIf, NgTemplateOutlet, AsyncPipe, TranslateModule],

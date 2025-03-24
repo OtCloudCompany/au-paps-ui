@@ -56,6 +56,9 @@ body {
 #main-navbar .fa-caret-down {
   color: #fff;
 }
+.nav-breadcrumb {
+  margin-bottom: 16px;
+}
 .btn-primary {
   background-color: var(--au-red);
   border-color: var(--au-red);
@@ -90,6 +93,19 @@ ds-themed-search-form .scope-button{
 #header-search form .form-group {
   margin-bottom: 0 !important;
 }
+.list-group-item.active {
+  background-color: var(--au-red) !important;
+  border-color: var(--au-red) !important;
+  color: white !important;
+}
+.list-group-item.active:hover {
+  background-color: var(--au-light-green);
+  border-color: var(--au-light-green);
+  color: white !important;
+}
+.badge-info {
+  background-color: var(--au-red) !important;
+}
 
 div.background-image {
   color: #fff;
@@ -97,6 +113,19 @@ div.background-image {
   position: relative;
   background-size: cover;
   min-height: 350px;
+}
+.simple-view-element-header{
+  font-size: 1.25rem !important;
+}
+.file-section-wrapper .simple-view-element{
+  margin-bottom: 0 !important;
+}
+.community-item-counts{
+  bottom: 0;
+}
+ds-top-level-community-list .col-sm-6 {
+  padding-right: 1px !important;
+  padding-left: 1px !important;
 }
 div.background-image.background-image-1{
   background-image: url(/assets/otcloud/images/news/au-1.jpg);

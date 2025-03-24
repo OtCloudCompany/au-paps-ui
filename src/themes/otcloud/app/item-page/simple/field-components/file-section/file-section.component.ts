@@ -7,13 +7,12 @@ import { slideSidebarPadding } from '../../../../../../../app/shared/animations/
 import { ThemedFileDownloadLinkComponent } from '../../../../../../../app/shared/file-download-link/themed-file-download-link.component';
 import { ThemedLoadingComponent } from '../../../../../../../app/shared/loading/themed-loading.component';
 import { MetadataFieldWrapperComponent } from '../../../../../../../app/shared/metadata-field-wrapper/metadata-field-wrapper.component';
-import { FileSizePipe } from '../../../../../../../app/shared/utils/file-size-pipe';
 import { VarDirective } from '../../../../../../../app/shared/utils/var.directive';
+import { Bitstream } from '../../../../../../../app/core/shared/bitstream.model';
 
 @Component({
   selector: 'ds-themed-item-page-file-section',
-  // templateUrl: './file-section.component.html',
-  templateUrl: '../../../../../../../app/item-page/simple/field-components/file-section/file-section.component.html',
+  templateUrl: './file-section.component.html',
   animations: [slideSidebarPadding],
   standalone: true,
   imports: [
@@ -22,10 +21,13 @@ import { VarDirective } from '../../../../../../../app/shared/utils/var.directiv
     MetadataFieldWrapperComponent,
     ThemedLoadingComponent,
     TranslateModule,
-    FileSizePipe,
     VarDirective,
   ],
 })
 export class FileSectionComponent extends BaseComponent {
-
+  getFileDescription(file: Bitstream) {
+    const fileDescription = file?.metadata['dc.description'][0]['value'];
+    console.log(file);
+    return fileDescription ? fileDescription : 'pppp';
+  }
 }

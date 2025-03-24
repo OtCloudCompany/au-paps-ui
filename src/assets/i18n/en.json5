@@ -2786,7 +2786,7 @@
 
   "item.page.relationships.isOrgUnitOfProject": "Research Projects",
 
-  "item.page.subject": "Keywords",
+  "item.page.subject": "Subject(s)",
 
   "item.page.uri": "URI",
 
@@ -6943,4 +6943,18 @@
   "item.page.topCountries": "Top 10 Countries",
 
   "item.page.topCities": "Top 10 Cities",
+
+  "item.page.extent": "Extent",
+
+  "item.page.format": "Format",
+
+  "item.page.language": "Language",
+
+  "item.page.series": "Is Part of Series",
+
+  "item.page.reference": "Reference",
+
+  "item.page.chair": "Meeting Chair",
+
+  "item.page.country": "Chairing Country",
 }
