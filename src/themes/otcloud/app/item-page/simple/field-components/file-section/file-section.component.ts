@@ -26,8 +26,12 @@ import { Bitstream } from '../../../../../../../app/core/shared/bitstream.model'
 })
 export class FileSectionComponent extends BaseComponent {
   getFileDescription(file: Bitstream) {
-    const fileDescription = file?.metadata['dc.description'][0]['value'];
-    console.log(file);
-    return fileDescription ? fileDescription : 'pppp';
+    let fileDescription: string;
+    if (file?.metadata['dc.description']) {
+      fileDescription = file?.metadata['dc.description'][0]['value'];
+    } else {
+      fileDescription = this.dsoNameService.getName(file) || 'Undefined';
+    }
+    return  fileDescription;
   }
 }

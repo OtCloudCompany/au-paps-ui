@@ -10,6 +10,7 @@
   --ds-navbar-bg: var(--au-dark-green);
   --ds-navbar-link-color: #fff;
   --ds-thumbnail-max-width: 200px !important;
+  --thumbnail-box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, 1px 0 15px -4px rgba(31, 73, 125, .8), -1px 0 15px -4px rgba(31, 73, 125, .8);
 }
 a{
   color: #000 !important;
@@ -59,17 +60,18 @@ body {
 .nav-breadcrumb {
   margin-bottom: 16px;
 }
-.btn-primary {
-  background-color: var(--au-red);
-  border-color: var(--au-red);
+.btn-primary, .btn-secondary, .badge-secondary, .btn-dark {
+  background-color: var(--au-red) !important;
+  border-color: var(--au-red) !important;
+  color: white !important;
 }
-.btn-primary:hover {
-  background-color: var(--au-light-green);
-  border-color: var(--au-light-green);
+
+.btn-primary:hover, .btn-secondary:hover {
+  background-color: var(--au-light-green) !important;
+  border-color: var(--au-light-green) !important;
+  color: white !important;
 }
-div#header-navbar-wrapper {
-  border-bottom: 1px var(--au-dark-green) solid !important;
-}
+
 .ds-menu-item-wrapper .dropdown-menu {
   background-color: var(--au-dark-green) !important;
 }
@@ -126,6 +128,21 @@ div.background-image {
 ds-top-level-community-list .col-sm-6 {
   padding-right: 1px !important;
   padding-left: 1px !important;
+}
+.home-recent .row .col-3 .thumbnail {
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--thumbnail-box-shadow);
+  padding-right: 3px;
+  padding-left: 3px;
+}
+.page-item.active .page-link {
+  background-color: var(--au-red) !important;
+  border-color: var(--au-red) !important;
+  color: white !important;
+}
+.ngx-gallery-image{
+  background-position: center center !important;
 }
 div.background-image.background-image-1{
   background-image: url(/assets/otcloud/images/news/au-1.jpg);
@@ -372,17 +389,14 @@ footer a{
   border: none; margin-top: 0;
 }
 
-@media (min-width: 1140px) {
-
+.sidebar-collapsible-element-outer-wrapper a{
+  color: white !important;
 }
-
-@media (max-width: 598.98px) {
-  #header-search, .mobile-hide {
-    display: none !important;
-  }
-  .mobile-show{
-    display: flex !important;
-  }
+nav#admin-sidebar a {
+  color: white !important;
+}
+div#header-navbar-wrapper {
+  border-bottom: 1px var(--au-dark-green) solid !important;
 }
 
 html[dir='ltr']{ // Non Arabic CSS
@@ -457,6 +471,56 @@ html[dir='rtl']{ // Arabic CSS
 
   .float-right {
     float: left !important;
+  }
+}
+
+@media (min-width: 1140px) {
+
+}
+
+@media (max-width: 598.98px) {
+  .mobile-hide {
+    display: none !important;
+  }
+  .mobile-show{
+    display: flex !important;
+  }
+}
+@media screen and (max-width: 767.98px) {
+  .mobile-hide {
+    display: none !important;
+  }
+  #header-navbar .navbar-product-name {
+    float: right;
+    margin-top: 6px;
+    margin-left: 0px;
+  }
+  .navbar-brand img {
+    display: block;
+  }
+  .container, .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+    max-width: 686px;
+  }
+  .top-level-communities .card{
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .home-recent .col-3.col-md-2{
+    display: none;
+  }
+  .home-recent .col-9{
+    width: 100%;
+  }
+  .home-recent{
+    margin-bottom: 12px;
+  }
+  .nav-breadcrumb {
+    padding-top: 16px;
+  }
+  .sm-mobile{
+    font-size: 0.75rem;
   }
 }
 

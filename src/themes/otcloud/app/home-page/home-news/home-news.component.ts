@@ -64,8 +64,8 @@ export class HomeNewsComponent extends BaseComponent implements OnInit{
       // 'background-image background-image-39',
       // 'background-image background-image-40',
       // 'background-image background-image-41',
-      'background-image background-image-42',
-      'background-image background-image-43',
+      // 'background-image background-image-42',
+      // 'background-image background-image-43',
     ];
 
     const randomNum = Math.floor(Math.random() * image_classes.length);

@@ -28,7 +28,7 @@
         </a>
       </li>
       <li class="nav-item hover-grey dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
           <i class="fas fa-share-from-square"></i> {{"item.page.link.share" | translate }}
         </a>
         <div class="dropdown-menu">
@@ -43,7 +43,7 @@
         </div>
       </li>
       <li class="nav-item hover-grey dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
           <i class="fas fa-bookmark"></i> {{"item.page.link.bibliographic-managers" | translate }}
         </a>
         <div class="dropdown-menu">
@@ -96,12 +96,6 @@
                                 [label]="'item.page.extent'">
         </ds-generic-item-page-field>
       </div>
-      <div class="col-sm-12 col-md-12" *ngIf="object.hasMetadata(['dc.identifier.uri'])">
-        <ds-item-page-uri-field [item]="object"
-                                [fields]="['dc.identifier.uri']"
-                                [label]="'item.page.uri'">
-        </ds-item-page-uri-field>
-      </div>
       <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.format.medium'])">
         <ds-generic-item-page-field [item]="object"
                                 [fields]="['dc.format.medium']"
@@ -148,7 +142,7 @@
             {{ "item.page.reference" | translate }}
           </h2>
           <div class="simple-view-element-body">
-            <ng-container *ngFor="let mdValue of object.allMetadataValues(['aupaps.meeting.country']); let last=last;">
+            <ng-container *ngFor="let mdValue of object.allMetadataValues(['aupaps.identifier.reference']); let last=last;">
             <span class="dont-break-out preserve-line-breaks">
               <a routerLink="/browse/reference?startsWith={{ encodeURI(mdValue) }}">{{ mdValue }}</a>
             </span>
@@ -181,6 +175,12 @@
             </ng-container>
           </div>
         </div>
+      </div>
+      <div class="col-sm-12 col-md-12" *ngIf="object.hasMetadata(['dc.identifier.uri'])">
+        <ds-item-page-uri-field [item]="object"
+                                [fields]="['dc.identifier.uri']"
+                                [label]="'item.page.uri'">
+        </ds-item-page-uri-field>
       </div>
     </div>
 
@@ -268,7 +268,7 @@
         <h3 class="card-title mb-0">{{ "item.page.files" | translate }}</h3>
       </div>
       <div class="card-body p-0">
-        <div class="justify-content-center d-flex mt-3">
+        <div class="text-center mt-3">
           <ng-container *ngIf="!(mediaViewer.image || mediaViewer.video)">
             <ds-metadata-field-wrapper [class]="'mb-0 pb-0'" [hideIfNoTextContent]="false">
               <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
@@ -283,7 +283,6 @@
         </div>
       </div>
     </div>
-
 
     <ul class="list-group my-4" *ngIf="reportsLoaded">
       <li class="list-group-item d-flex justify-content-between align-items-center">

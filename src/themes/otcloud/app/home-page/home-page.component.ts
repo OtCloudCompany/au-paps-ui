@@ -1,6 +1,5 @@
 import {
   AsyncPipe,
-  NgClass,
   NgIf,
   NgTemplateOutlet,
 } from '@angular/common';
@@ -14,18 +13,15 @@ import { RecentItemListComponent } from '../../../../app/home-page/recent-item-l
 import { ThemedTopLevelCommunityListComponent } from '../../../../app/home-page/top-level-community-list/themed-top-level-community-list.component';
 import { SuggestionsPopupComponent } from '../../../../app/notifications/suggestions-popup/suggestions-popup.component';
 import { ThemedConfigurationSearchPageComponent } from '../../../../app/search-page/themed-configuration-search-page.component';
-import { PageWithSidebarComponent } from '../../../../app/shared/sidebar/page-with-sidebar.component';
 import { ViewTrackerComponent } from '../../../../app/statistics/angulartics/dspace/view-tracker.component';
-import {KnowledgeWheelComponent} from "./knowledge-wheel/knowledge-wheel.component";
-import {CustomSidebarComponent} from "./custom-sidebar/custom-sidebar.component";
-import {RecentSubmissionsComponent} from "./recent-submissions/recent-submissions.component";
+import { CustomSidebarComponent } from './custom-sidebar/custom-sidebar.component';
 
 @Component({
   selector: 'ds-themed-home-page',
   styleUrls: ['../../../../app/home-page/home-page.component.scss'],
   templateUrl: './home-page.component.html',
   standalone: true,
-  imports: [ThemedHomeNewsComponent, NgTemplateOutlet, NgIf, ViewTrackerComponent, ThemedTopLevelCommunityListComponent, RecentItemListComponent, AsyncPipe, TranslateModule, NgClass, SuggestionsPopupComponent, ThemedConfigurationSearchPageComponent, PageWithSidebarComponent, HomeCoarComponent, KnowledgeWheelComponent, CustomSidebarComponent, RecentSubmissionsComponent],
+  imports: [ThemedHomeNewsComponent, NgTemplateOutlet, NgIf, ViewTrackerComponent, ThemedTopLevelCommunityListComponent, RecentItemListComponent, AsyncPipe, TranslateModule, SuggestionsPopupComponent, ThemedConfigurationSearchPageComponent, HomeCoarComponent, CustomSidebarComponent],
 })
 export class HomePageComponent extends BaseComponent {
 
