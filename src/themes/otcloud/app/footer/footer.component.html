@@ -16,21 +16,21 @@
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="footer-pad">
-            <h4> Follow Us</h4>
+            <h4> {{ "footer.head.follow" | translate }}</h4>
             <div>
               <h2 class="social-media-icons">
-                <a class="mx-1" title="Twitter" href="http://twitter.com/_AfricanUnion">
-                  <i class="fab fa-twitter fa-sm text-au-light-green"></i>
+                <a class="mx-1" title="Twitter" href="https://x.com/AUC_PAPS" target="_blank">
+                  <i class="fab fa-x-twitter fa-sm text-au-light-green"></i>
                   <span class="sr-only">Twitter</span>
                 </a>
-                <a class="mx-1" title="Facebook" href="http://www.facebook.com/pages/Addis-Ababa-Ethiopia/African-Union/454340075407">
+                <a class="mx-1" target="_blank" title="Facebook" href="http://www.facebook.com/pages/Peace-Security-Dept-of-the-African-Union-Commission/302661349775297">
                   <em class="fab fa-facebook fa-sm text-au-light-green"></em>
                   <span class="sr-only">Facebook</span></a>
-                <a class="mx-1" title="Flickr" href="http://www.flickr.com/photos/africanunioncommission/">
+                <a class="mx-1" title="Flickr" href="https://www.flickr.com/photos/au_psd/albums" target="_blank">
                   <em class="fab fa-flickr fa-sm text-au-light-green"></em>
                   <span class="sr-only">Flickr</span>
                 </a>
-                <a class="mx-1" title="YouTube" href="http://www.youtube.com/AUCommission">
+                <a class="mx-1" title="YouTube" href="https://www.youtube.com/user/africaforpeace1" target="_blank">
                   <em class="fab fa-youtube fa-sm text-au-light-green"></em>
                   <span class="sr-only">YouTube</span>
                 </a>
@@ -40,12 +40,11 @@
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="footer-pad">
-            <h4> Help & Support </h4>
+            <h4> {{ "footer.head.help" | translate }} </h4>
             <ul class="list-unstyled">
-              <li> <a routerLink="/info/feedback"> Give Feedback </a> </li>
-              <li> <a routerLink="/info/privacy">Privacy Policy</a></li>
-              <li> <a routerLink="/info/end-user-agreement">End User Agreement</a></li>
-              <li> <a routerLink="/info/privacy">Privacy Policy</a></li>
+              <li> <a routerLink="/info/feedback"> {{ "footer.link.feedBack" | translate}} </a> </li>
+              <li> <a routerLink="/info/privacy">{{ "footer.link.privacy" | translate }}</a></li>
+              <li> <a routerLink="/info/end-user-agreement">{{ "footer.link.agreement" | translate }}</a></li>
               <li>
                 <button class="btn btn-link text-white py-0 pl-0" type="button" (click)="showCookieSettings()">
                   {{ 'footer.link.cookies' | translate}}

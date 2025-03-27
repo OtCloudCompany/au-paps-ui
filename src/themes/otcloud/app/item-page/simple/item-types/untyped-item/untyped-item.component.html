@@ -81,7 +81,7 @@
           <div class="simple-view-element-body">
             <ng-container *ngFor="let mdValue of object.allMetadataValues(['dc.subject']); let last=last;">
             <span class="dont-break-out preserve-line-breaks">
-              <a routerLink="/browse/subject?startsWith={{ encodeURI(mdValue) }}">{{ mdValue }}</a>
+              <a [routerLink]="['/browse/subject']" [queryParams]="{ startsWith: mdValue }">{{ mdValue }}</a>
             </span>
               <ng-container *ngIf="!last">
                 <span class="separator">; </span>
@@ -110,7 +110,7 @@
           <div class="simple-view-element-body">
             <ng-container *ngFor="let mdValue of object.allMetadataValues(['dc.language.iso']); let last=last;">
             <span class="dont-break-out preserve-line-breaks">
-              <a routerLink="/browse/language?startsWith={{ encodeURI(mdValue) }}">{{ mdValue }}</a>
+              <a [routerLink]="['/browse/language']" [queryParams]="{ startsWith: mdValue }">{{ mdValue }}</a>
             </span>
               <ng-container *ngIf="!last">
                 <span class="separator">; </span>
@@ -127,7 +127,7 @@
           <div class="simple-view-element-body">
             <ng-container *ngFor="let mdValue of object.allMetadataValues(['dc.relation.ispartofseries']); let last=last;">
           <span class="dont-break-out preserve-line-breaks">
-            <a routerLink="/browse/series?startsWith={{ encodeURI(mdValue) }}">{{ mdValue }}</a>
+            <a [routerLink]="['/browse/series']" [queryParams]="{ startsWith: mdValue }">{{ mdValue }}</a>
           </span>
               <ng-container *ngIf="!last">
                 <span class="separator">; </span>
@@ -144,7 +144,7 @@
           <div class="simple-view-element-body">
             <ng-container *ngFor="let mdValue of object.allMetadataValues(['aupaps.identifier.reference']); let last=last;">
             <span class="dont-break-out preserve-line-breaks">
-              <a routerLink="/browse/reference?startsWith={{ encodeURI(mdValue) }}">{{ mdValue }}</a>
+            <a [routerLink]="['/browse/reference']" [queryParams]="{ startsWith: mdValue }">{{ mdValue }}</a>
             </span>
               <ng-container *ngIf="!last">
                 <span class="separator">; </span>
@@ -167,7 +167,7 @@
           <div class="simple-view-element-body">
             <ng-container *ngFor="let mdValue of object.allMetadataValues(['aupaps.meeting.country']); let last=last;">
           <span class="dont-break-out preserve-line-breaks">
-            <a routerLink="/browse/country?startsWith={{ encodeURI(mdValue) }}">{{ mdValue }}</a>
+            <a [routerLink]="['/browse/country']" [queryParams]="{ startsWith: mdValue }">{{ mdValue }}</a>
           </span>
               <ng-container *ngIf="!last">
                 <span class="separator">; </span>

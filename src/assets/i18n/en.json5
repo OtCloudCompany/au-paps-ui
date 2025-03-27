@@ -6904,15 +6904,15 @@
 
   "dynamic-form-array.sortable-list.label": "Sortable list",
 
-  "customSidebar.title": "Filter by Title",
+  "customSidebar.title": "By Title",
 
-  "customSidebar.author": "Filter by Authors",
+  "customSidebar.author": "By Authors",
 
-  "customSidebar.subject": "Filter by Subject",
+  "customSidebar.subject": "By Subject",
 
   "customSidebar.dateissued": "Filter by Date Issued",
 
-  "customSidebar.dateIssued": "Filter by Date Issued",
+  "customSidebar.dateIssued": "By Date Issued",
 
   "item.page.link.cite": "Cite",
 
@@ -6957,4 +6957,90 @@
   "item.page.chair": "Meeting Chair",
 
   "item.page.country": "Chairing Country",
+
+  "customSidebar.country": "By Chairing Country",
+
+  "menu.section.browse_global_by_language": "By Language",
+
+  "menu.section.browse_global_by_series": "By Series",
+
+  "menu.section.browse_global_by_itemtype": "By Item Type",
+
+  "menu.section.browse_global_by_country": "By Chairing Country",
+
+  "browse.comcol.by.language": "By Language",
+
+  "browse.comcol.by.series": "By Series",
+
+  "browse.comcol.by.itemtype": "By Type",
+
+  "browse.comcol.by.country": "By Country",
+
+  "browse.metadata.language.breadcrumb": "Language",
+
+  "browse.metadata.series.breadcrumb": "Series",
+
+  "browse.metadata.itemtype.breadcrumb": "Type",
+
+  "browse.metadata.country.breadcrumb": "Country",
+
+  "browse.metadata.language.breadcrumbs": "Browse by Language",
+
+  "browse.metadata.series.breadcrumbs": "Browse by Series",
+
+  "browse.metadata.itemtype.breadcrumbs": "Browse by Type",
+
+  "browse.metadata.country.breadcrumbs": "Browse by Country",
+
+  "browse.metadata.language": "Language",
+
+  "browse.metadata.series": "Series",
+
+  "browse.metadata.itemtype": "Type",
+
+  "browse.metadata.country": "Country",
+
+  "menu.section.browse_global_by_type": "By Item Type",
+
+  "item.page.city": "City",
+
+  "item.page.views": "Views",
+
+  "menu.section.browse_global_by_reference": "By Reference",
+
+  "browse.comcol.by.reference": "By Reference",
+
+  "browse.metadata.country.reference": "Browse by Reference",
+
+  "browse.metadata.reference": "Reference",
+
+  "customSidebar.reference": "Filter Reference",
+
+  "customSidebar.head": "Browse",
+
+  "customSidebar.calendar.head": "AUPSC Calendar",
+
+  "footer.giveFeedback": "Give Feedback",
+
+  "footer.privacy": "Privacy Policy",
+
+  "footer.agreement": "End User Agreement",
+
+  "footer.link.feedBack": "Give Feedback",
+
+  "footer.link.privacy": "Privacy Policy",
+
+  "footer.link.agreement": "End User Agreement",
+
+  "footer.head.help": "Help & Support",
+
+  "footer.head.follow": "Follow Us",
+
+  "browse.comcol.by.type": "By Type",
+
+  "browse.metadata.type.breadcrumbs": "Browse by Type",
+
+  "browse.metadata.type": "Type",
+
+  "browse.metadata.reference.breadcrumbs": "Browse by Reference",
 }

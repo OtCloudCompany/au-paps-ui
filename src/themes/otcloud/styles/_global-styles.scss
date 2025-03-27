@@ -398,7 +398,17 @@ nav#admin-sidebar a {
 div#header-navbar-wrapper {
   border-bottom: 1px var(--au-dark-green) solid !important;
 }
-
+.all-collections-link{
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+.custom-sidebar-img {
+  width: 50px; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+.custom-sidebar-img:hover {
+  color: var(--au-light-green) !important;
+}
 html[dir='ltr']{ // Non Arabic CSS
   footer {
     text-align: left !important;

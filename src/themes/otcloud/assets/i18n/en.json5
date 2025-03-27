@@ -1,8 +1,12 @@
 {
-  "customSidebar.title": "Filter by Title",
-  "customSidebar.author": "Filter by Authors",
-  "customSidebar.subject": "Filter by Subject",
-  "customSidebar.dateIssued": "Filter by Date Issued",
+  "customSidebar.title": "By Title",
+  "customSidebar.author": "By Authors",
+  "customSidebar.subject": "By Subject",
+  "customSidebar.dateIssued": "By Date Issued",
+  "customSidebar.country": "By Chairing Country",
+  "customSidebar.reference": "Filter Reference",
+  "customSidebar.head": "Browse",
+  "customSidebar.calendar.head": "AUPSC Calendar",
 
   "item.page.link.full": "All Metadata",
   "item.page.link.simple": "Simple Article Page",
@@ -21,6 +25,8 @@
   "item.page.visitsByMonth": "Visits by Month",
   "item.page.topCountries": "Top 10 Countries",
   "item.page.topCities": "Top 10 Cities",
+  "item.page.city": "City",
+  "item.page.views": "Views",
   "item.page.extent": "Extent",
   "item.page.format": "Format",
   "item.page.language": "Language",
@@ -30,6 +36,36 @@
   "item.page.country": "Chairing Country",
 
   "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global_by_language": "By Language",
+  "menu.section.browse_global_by_series": "By Series",
+  "menu.section.browse_global_by_type": "By Item Type",
+  "menu.section.browse_global_by_country": "By Chairing Country",
+  "menu.section.browse_global_by_reference": "By Reference",
+
+  "browse.comcol.by.language": "By Language",
+  "browse.comcol.by.series": "By Series",
+  "browse.comcol.by.type": "By Type",
+  "browse.comcol.by.country": "By Country",
+  "browse.comcol.by.reference": "By Reference",
+
+  "browse.metadata.language.breadcrumbs": "Browse by Language",
+  "browse.metadata.series.breadcrumbs": "Browse by Series",
+  "browse.metadata.type.breadcrumbs": "Browse by Type",
+  "browse.metadata.country.breadcrumbs": "Browse by Country",
+  "browse.metadata.reference.breadcrumbs": "Browse by Reference",
+
+  "browse.metadata.language": "Language",
+  "browse.metadata.series": "Series",
+  "browse.metadata.type": "Type",
+  "browse.metadata.country": "Country",
+  "browse.metadata.reference": "Reference",
+
+  "footer.link.feedBack": "Give Feedback",
+  "footer.link.privacy": "Privacy Policy",
+  "footer.link.agreement": "End User Agreement",
+  "footer.head.help": "Help & Support",
+  "footer.head.follow": "Follow Us",
+
   "repository.title.prefix": "PAPS Digital Repository :: ",
 
   "401.help": "You're not authorized to access this page. You can use the button below to get back to the home page.",
