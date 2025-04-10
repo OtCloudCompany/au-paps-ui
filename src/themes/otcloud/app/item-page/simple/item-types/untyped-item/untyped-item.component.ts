@@ -56,6 +56,7 @@ import { ModalContentComponent } from './modal-content/modal-content.component';
 import { HighchartsService } from 'src/themes/otcloud/app/highcharts.service';
 import { UsageReport } from '../../../../../../../app/core/statistics/models/usage-report.model';
 import worldMap from '@highcharts/map-collection/custom/world.geo.json';
+// import worldMap from '@highcharts/map-collection/custom/world-palestine.geo.json';
 
 /**
  * Component that represents an untyped Item page
