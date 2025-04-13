@@ -14,7 +14,6 @@ import {
   ChangeDetectorRef,
   Component,
   Inject, OnInit,
-  PLATFORM_ID,
 } from '@angular/core';
 import {
   Router,
@@ -25,12 +24,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Context } from '../../../../../../../app/core/shared/context.model';
 import { Item } from '../../../../../../../app/core/shared/item.model';
 import { ViewMode } from '../../../../../../../app/core/shared/view-mode.model';
-import { CollectionsComponent } from '../../../../../../../app/item-page/field-components/collections/collections.component';
 import { ThemedMediaViewerComponent } from '../../../../../../../app/item-page/media-viewer/themed-media-viewer.component';
 import { MiradorViewerComponent } from '../../../../../../../app/item-page/mirador-viewer/mirador-viewer.component';
 import { ThemedFileSectionComponent } from '../../../../../../../app/item-page/simple/field-components/file-section/themed-file-section.component';
-import { ItemPageAbstractFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/abstract/item-page-abstract-field.component';
-import { ItemPageCcLicenseFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/cc-license/item-page-cc-license-field.component';
 import { ItemPageDateFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/date/item-page-date-field.component';
 import { GenericItemPageFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/generic/generic-item-page-field.component';
 import { ThemedItemPageTitleFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/title/themed-item-page-field.component';
@@ -45,7 +41,6 @@ import { ThemedThumbnailComponent } from '../../../../../../../app/thumbnail/the
 import { NgbModal, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouteService } from 'src/app/core/services/route.service';
 import { UsageReportDataService } from 'src/app/core/statistics/usage-report-data.service';
-import { AuthorizationDataService } from 'src/app/core/data/feature-authorization/authorization-data.service';
 import { hasValue } from 'src/app/shared/empty.util';
 import { HighchartsChartModule } from  'highcharts-angular';
 import { TruncatableComponent } from '../../../../../../../app/shared/truncatable/truncatable.component';
@@ -56,7 +51,12 @@ import { ModalContentComponent } from './modal-content/modal-content.component';
 import { HighchartsService } from 'src/themes/otcloud/app/highcharts.service';
 import { UsageReport } from '../../../../../../../app/core/statistics/models/usage-report.model';
 import worldMap from '@highcharts/map-collection/custom/world.geo.json';
-// import worldMap from '@highcharts/map-collection/custom/world-palestine.geo.json';
+import { CountryMapComponent } from "../../country-map/country-map.component";
+import {SearchConfigurationService} from "../../../../../../../app/core/shared/search/search-configuration.service";
+import {APP_CONFIG, AppConfig} from "../../../../../../../config/app-config.interface";
+import {
+  TabbedRelatedEntitiesSearchComponent
+} from "../../../../../../../app/item-page/simple/related-entities/tabbed-related-entities-search/tabbed-related-entities-search.component";
 
 /**
  * Component that represents an untyped Item page
@@ -83,22 +83,20 @@ import worldMap from '@highcharts/map-collection/custom/world.geo.json';
     ItemPageDateFieldComponent,
     ThemedMetadataRepresentationListComponent,
     GenericItemPageFieldComponent,
-    ItemPageAbstractFieldComponent,
     ItemPageUriFieldComponent,
-    CollectionsComponent,
     RouterLink,
     AsyncPipe,
     TranslateModule,
-    ItemPageCcLicenseFieldComponent,
     HighchartsChartModule,
     NgForOf,
     NgbNavModule,
     TruncatableComponent,
     TruncatablePartComponent,
+    CountryMapComponent,
+    TabbedRelatedEntitiesSearchComponent,
   ],
 })
 export class UntypedItemComponent extends BaseComponent implements OnInit {
-  protected readonly encodeURI = encodeURI;
   Highcharts: any;
   topCountries: UsageReport;
   topCities: UsageReport;
@@ -128,6 +126,8 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
   endNoteCitation: string;
   csvCitation: string;
 
+  entityName: string;
+
   citationsLoaded = false;
   identifierURLs: string[];
   handleIdentifier: string;
@@ -146,12 +146,17 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
     protected usageReportDataService: UsageReportDataService,
     private highchartsService: HighchartsService,
     private cd: ChangeDetectorRef,
-    private authorizationService: AuthorizationDataService,
-    @Inject(PLATFORM_ID) private platformId: NonNullable<unknown>) {
+    private searchConfigurationService: SearchConfigurationService,
+    @Inject(APP_CONFIG) protected appConfig: AppConfig,) {
     super(routeService, router);
 
   }
   ngOnInit() {
+    if (this.object.hasMetadata(['dspace.entity.type'])){
+      this.entityName = this.object.firstMetadataValue(['dspace.entity.type']);
+    } else {
+      this.entityName = 'flatItem';
+    }
     this.Highcharts = this.highchartsService.getHighcharts();
     super.ngOnInit();
     this.itemTitle  = this.object.firstMetadataValue(['dc.title']);
@@ -304,7 +309,7 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
   }
 
   generateCitations(){
-    const dateIssued = this.object.firstMetadataValue(['dc.date.issued']);
+    const dateIssued = this.object.firstMetadataValue(['dc.date.issued']) || this.object.firstMetadataValue(['dc.date.accessioned']);
     const cite = new Cite({
       type: 'article-journal',
       title: this.object.firstMetadataValue(['dc.title']),

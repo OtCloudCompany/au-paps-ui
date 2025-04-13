@@ -35,6 +35,10 @@
   "item.page.chair": "Meeting Chair",
   "item.page.country": "Chairing Country",
 
+  "item.page.publisher": "Publisher",
+  "country.page.titleprefix": "Country Profile: ",
+  "country.listelement.badge": "Country",
+
   "menu.section.browse_global": "Browse Repository",
   "menu.section.browse_global_by_language": "By Language",
   "menu.section.browse_global_by_series": "By Series",
@@ -65,6 +69,14 @@
   "footer.link.agreement": "End User Agreement",
   "footer.head.help": "Help & Support",
   "footer.head.follow": "Follow Us",
+
+  "search.filters.filter.chairingCountry.head": "Chairing Country",
+  "search.filters.filter.chairingCountry.placeholder": "Chairing Country",
+  "search.filters.filter.chairingCountry.label": "Search Chairing Country",
+  "search.filters.applied.f.chairingCountry": "Chairing Country",
+  "chairing-country-relationships.search.results.head": "Meetings Chaired by Country",
+  "search.filters.applied.f.isPublicationOfCountry": "Chairing Country",
+  "search.filters.applied.f.isCountryOfPublication": "Chaired Meetings",
 
   "repository.title.prefix": "PAPS Digital Repository :: ",
 
@@ -2746,10 +2758,6 @@
 
   "item.page.journal-title": "Journal Title",
 
-  "item.page.publisher": "Publisher",
-
-  "item.page.titleprefix": "Item: ",
-
   "item.page.volume-title": "Volume Title",
 
   "item.search.results.head": "Item Search Results",
@@ -3264,7 +3272,7 @@
 
   "login.form.forgot-password": "Have you forgotten your password?",
 
-  "login.form.header": "Please log",
+  "login.form.header": "Please login",
 
   "login.form.new-user": "New user? Click here to register.",
 
@@ -4455,12 +4463,6 @@
   "search.filters.applied.operator.notcontains": " not contains",
 
   "search.filters.applied.operator.query": "",
-
-  "search.filters.filter.title.head": "Title",
-
-  "search.filters.filter.title.placeholder": "Title",
-
-  "search.filters.filter.title.label": "Search Title",
 
   "search.filters.filter.author.head": "Author",
 

@@ -3200,7 +3200,7 @@
 
   "login.form.forgot-password": "Have you forgotten your password?",
 
-  "login.form.header": "Please log",
+  "login.form.header": "Please login",
 
   "login.form.new-user": "New user? Click here to register.",
 
@@ -7043,4 +7043,28 @@
   "browse.metadata.type": "Type",
 
   "browse.metadata.reference.breadcrumbs": "Browse by Reference",
+
+  "country.page.titleprefix": "Country Profile: ",
+
+  "country.listelement.badge": "Country",
+
+  "search.filters.filter.country.head": "Chairing Country",
+
+  "search.filters.filter.country.placeholder": "Chairing Country",
+
+  "search.filters.filter.country.label": "Search Chairing Country",
+
+  "search.filters.filter.chairingCountry.head": "Chairing Country",
+
+  "search.filters.filter.chairingCountry.placeholder": "Chairing Country",
+
+  "search.filters.filter.chairingCountry.label": "Search Chairing Country",
+
+  "search.filters.applied.f.chairingCountry": "Chairing Country",
+
+  "chairing-country-relationships.search.results.head": "Meetings Chaired by Country",
+
+  "search.filters.applied.f.isPublicationOfCountry": "Chairing Country",
+
+  "search.filters.applied.f.isCountryOfPublication": "Chaired Meetings",
 }

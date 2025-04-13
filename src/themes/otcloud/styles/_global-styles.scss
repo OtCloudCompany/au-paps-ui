@@ -60,10 +60,13 @@ body {
 .nav-breadcrumb {
   margin-bottom: 16px;
 }
-.btn-primary, .btn-secondary, .badge-secondary, .btn-dark {
+.btn-primary, .btn-secondary, .badge-secondary, .badge-primary, .btn-dark {
   background-color: var(--au-red) !important;
   border-color: var(--au-red) !important;
   color: white !important;
+}
+.facet-filter {
+  border: 1px solid var(--au-light-green) !important;
 }
 
 .btn-primary:hover, .btn-secondary:hover {

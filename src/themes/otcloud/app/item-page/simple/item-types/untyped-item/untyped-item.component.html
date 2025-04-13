@@ -14,7 +14,7 @@
   </ds-item-page-title-field>
   <ds-dso-edit-menu></ds-dso-edit-menu>
 </div>
-<div class="row mt-3">
+<div class="row mt-3" *ngIf="entityName === 'flatItem' || entityName === 'Publication'">
   <div class="col-xs-12 col-md-8">
     <ul class="nav mb-3 border-bottom">
       <li class="nav-item hover-grey">
@@ -311,3 +311,20 @@
     </ds-generic-item-page-field>
   </div>
 </div>
+
+<div class="container-fluid" *ngIf="entityName==='Country'">
+  <div class="row my-3">
+    <div class="col-md-4 border border-info">
+      <ds-country-map [country]="object"></ds-country-map>
+    </div>
+    <div class="col-md-8">Country metadata here</div>
+  </div>
+  <ds-tabbed-related-entities-search  [item]="object"
+                                      [relationTypes]="[{
+                                          label: 'isPublicationOfCountry',
+                                          filter: 'isPublicationOfCountry',
+                                          configuration: 'default-relationships'
+                                        }]">
+  </ds-tabbed-related-entities-search>
+</div>
+

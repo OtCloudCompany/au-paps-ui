@@ -1,0 +1,9 @@
+<div *ngIf="isBrowser && mapChartOptions">
+  <highcharts-chart
+    [Highcharts]="Highcharts"
+    [constructorType]="'mapChart'"
+    [options]="mapChartOptions"
+    style="width: 100%; display: block;"
+  ></highcharts-chart>
+</div>
+
