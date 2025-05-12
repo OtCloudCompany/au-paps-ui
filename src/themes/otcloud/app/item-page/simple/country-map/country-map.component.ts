@@ -1,84 +1,93 @@
+import * as am5 from '@amcharts/amcharts5';
 import {
-  ChangeDetectorRef,
-  Component,
-  Inject,
-  Input,
-  OnInit,
-  PLATFORM_ID,
-} from '@angular/core';
-import { Item } from '../../../../../../app/core/shared/item.model';
+  geoNaturalEarth1,
+  MapChart,
+  MapPolygonSeries,
+} from '@amcharts/amcharts5/map';
+import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
+import am5geodata_region_world_africaLow from '@amcharts/amcharts5-geodata/region/world/africaLow';
 import {
   isPlatformBrowser,
   NgIf,
 } from '@angular/common';
-import * as Highcharts from 'highcharts';
-import { HighchartsChartModule } from 'highcharts-angular';
-import worldMap from '@highcharts/map-collection/custom/africa.geo.json';
-import MapModule from 'highcharts/modules/map';
-import ExportingModule from 'highcharts/modules/exporting';
-import { HighchartsService } from '../highcharts.service';
-import { getIsoCodeFromCountryName } from '../../africanCountries';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  Input,
+  NgZone,
+  OnInit,
+  PLATFORM_ID,
+} from '@angular/core';
+
+import { Item } from '../../../../../../app/core/shared/item.model';
+import { getIsoCodeFromCountryName } from '../../africanCountries'
 
 @Component({
   selector: 'ds-country-map',
   standalone: true,
-  imports: [
-    HighchartsChartModule,
-    NgIf,
-  ],
+  imports: [NgIf],
   templateUrl: './country-map.component.html',
   styleUrl: './country-map.component.scss',
 })
-export class CountryMapComponent implements OnInit {
+export class CountryMapComponent implements OnInit, AfterViewInit {
   @Input() country: Item;
 
-  Highcharts: typeof Highcharts = Highcharts;
   isBrowser: boolean;
   countryCode = 'et'; // default
   countryName = 'Ethopia'; // default
-  mapChartOptions: any;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
-              private cd: ChangeDetectorRef,
-              private highchartsService: HighchartsService) {
+              private zone: NgZone) {
     this.isBrowser = isPlatformBrowser(this.platformId);
-    // Initialize the modules
-    MapModule(Highcharts);
-    ExportingModule(Highcharts);
-    // Add map data to Highcharts
-    Highcharts.maps['custom/africa'] = worldMap;
   }
 
+  ngAfterViewInit() {
+    // Chart code goes in here
+    this.browserOnly(() => {
+      const root = am5.Root.new('chartdiv');
+
+      root.setThemes([am5themes_Animated.new(root)]);
+      const chart = root.container.children.push(
+        MapChart.new(root, {
+          projection: geoNaturalEarth1(),
+        }),
+      );
+      // Create polygon series
+      const polygonSeries = chart.series.push(
+        MapPolygonSeries.new(root, {
+          geoJSON: am5geodata_region_world_africaLow,
+        }),
+      );
+      polygonSeries.mapPolygons.template.setAll({
+        tooltipText: '{name}',
+        interactive: true, fill: am5.color(0xc3a466),
+      });
+
+      polygonSeries.mapPolygons.template.states.create('hover', {
+        fill: am5.color(0x677935),
+      });
+      polygonSeries.events.on('datavalidated', () => {
+        const countryDataItem = polygonSeries.getDataItemById(this.countryCode);
+        if (countryDataItem) {
+          const countryPolygon = countryDataItem.get('mapPolygon');
+          if (countryPolygon) {
+            countryPolygon.set('fill', am5.color(0x0e591a));
+            countryPolygon.set('stroke', am5.color(0x000000));
+          }
+        }
+      });
+    });
+  }
   ngOnInit() {
-    this.Highcharts = this.highchartsService.getHighcharts();
     this.countryName = this.country.firstMetadataValue(['dc.title']);
-    this.countryCode = getIsoCodeFromCountryName(this.countryName);
-    this.mapChartOptions = {
-      chart: { map: worldMap },
-      title: { text: 'Map of Africa' },
-      mapNavigation: {
-        enabled: true,
-        buttonOptions: {
-          verticalAlign: 'bottom',
-        },
-      },
-      colorAxis: { min: 10 },
-      series: [
-        {
-          type: 'map',
-          name: 'Views',
-          mapData: worldMap,
-          data: [[this.countryCode, 800]],
-          dataLabels: {
-            enabled: false,
-            format: '{point.name}',
-          },
-          tooltip: {
-            pointFormat: '{point.name}: {point.value}',
-          },
-        },
-      ],
-    };
-    this.cd.detectChanges();
+    this.countryCode = getIsoCodeFromCountryName(this.countryName).toUpperCase();
+  }
+
+  // Run the function only in the browser
+  browserOnly(f: () => void) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.zone.runOutsideAngular(() => {f();});
+    }
   }
 }

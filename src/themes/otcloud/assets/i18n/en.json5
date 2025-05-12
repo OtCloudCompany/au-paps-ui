@@ -34,6 +34,8 @@
   "item.page.reference": "Reference",
   "item.page.chair": "Meeting Chair",
   "item.page.country": "Chairing Country",
+  "item.page.stats.country": "Country",
+  "item.page.country.description": "About",
 
   "item.page.publisher": "Publisher",
   "country.page.titleprefix": "Country Profile: ",
@@ -76,8 +78,7 @@
   "search.filters.applied.f.chairingCountry": "Chairing Country",
   "chairing-country-relationships.search.results.head": "Meetings Chaired by Country",
   "search.filters.applied.f.isPublicationOfCountry": "Chairing Country",
-  "search.filters.applied.f.isCountryOfPublication": "Chaired Meetings",
-
+  "search.filters.applied.f.isCountryOfPublication": "Chairing Country ID",
   "repository.title.prefix": "PAPS Digital Repository :: ",
 
   "401.help": "You're not authorized to access this page. You can use the button below to get back to the home page.",
@@ -3266,7 +3267,7 @@
 
   "loading.sub-communities": "Loading sub-communities...",
 
-  "loading.top-level-communities": "Loading top-level communities...",
+  "loading.top-level-communities": "Loading featured collections...",
 
   "login.form.email": "Email address",
 
@@ -4424,7 +4425,7 @@
 
   "search.filters.applied.f.discoverable": "Non-discoverable",
 
-  "search.filters.applied.f.entityType": "Item Type",
+  "search.filters.applied.f.entityType": "Entity Type",
 
   "search.filters.applied.f.has_content_in_original_bundle": "Has files",
 
@@ -4522,11 +4523,11 @@
 
   "search.filters.filter.withdrawn.head": "Withdrawn",
 
-  "search.filters.filter.entityType.head": "Item Type",
+  "search.filters.filter.entityType.head": "Entity Type",
 
-  "search.filters.filter.entityType.placeholder": "Item Type",
+  "search.filters.filter.entityType.placeholder": "Entity Type",
 
-  "search.filters.filter.entityType.label": "Search item type",
+  "search.filters.filter.entityType.label": "Search entity type",
 
   "search.filters.filter.expand": "Expand filter",
 

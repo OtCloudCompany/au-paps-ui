@@ -412,6 +412,10 @@ div#header-navbar-wrapper {
 .custom-sidebar-img:hover {
   color: var(--au-light-green) !important;
 }
+#chartdiv {
+  width: 100%;
+  height: 100%;
+}
 html[dir='ltr']{ // Non Arabic CSS
   footer {
     text-align: left !important;

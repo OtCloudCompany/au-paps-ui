@@ -184,7 +184,6 @@
       </div>
     </div>
 
-
     <div class="my-4" *ngIf="reportsLoaded">
       <h4 class="simple-view-element-header">{{ "item.page.usageStatistics" | translate }}</h4>
       <ul ngbNav  #nav="ngbNav" class="nav-tabs">
@@ -192,9 +191,10 @@
           <a ngbNavLink>{{ "item.page.visitsByMonth" | translate }}</a>
           <ng-template ngbNavContent>
             <div class="bg-light p-2">
-              <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
-                                style="width: 100%; height: 400px; display: block;">
-              </highcharts-chart>
+              <ds-visits-line-chart
+                [xAxisData]="retrievedMonths"
+                [yAxisData]="dataList">
+              </ds-visits-line-chart>
             </div>
           </ng-template>
         </li>
@@ -205,7 +205,7 @@
               <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                   <thead class="bg-light">
-                  <th>#</th><th>{{ "item.page.country" | translate }}</th>
+                  <th>#</th><th>{{ "item.page.stats.country" | translate }}</th>
                   <th>{{ "item.page.views" | translate }}</th>
                   </thead>
                   <tbody>
@@ -218,13 +218,8 @@
                 </table>
               </div>
               <div class="bg-light p-2">
-                <highcharts-chart [Highcharts]="Highcharts"
-                                  [constructorType]="'mapChart'"
-                                  [options]="mapChartOptions"
-                                  style="width: 100%; height: 400px; display: block;">
-                </highcharts-chart>
+                <ds-usage-world-map *ngIf="reportsLoaded" [mapData]="countriesMapData"></ds-usage-world-map>
               </div>
-
             </div>
 
           </ng-template>
@@ -249,11 +244,7 @@
                 </table>
               </div><!-- .table-responsive -->
               <div class="bg-light p-2">
-                <highcharts-chart
-                  [Highcharts]="Highcharts"
-                  [options]="citiesBarGraphOptions"
-                  style="width: 100%; height: 400px; display: block;">
-                </highcharts-chart>
+                <ds-city-bar-chart [barGraphData]="citiesTableData"></ds-city-bar-chart>
               </div>
             </div>
           </ng-template>
@@ -317,14 +308,32 @@
     <div class="col-md-4 border border-info">
       <ds-country-map [country]="object"></ds-country-map>
     </div>
-    <div class="col-md-8">Country metadata here</div>
+    <div class="col-md-8 bg-light p-3">
+      <div class="abstract-field simple-view-element mb-4" *ngIf="object.hasMetadata(['aupaps.description'])">
+        <ds-truncatable [showToggle]="true" [id]="'truncatable-country-description'">
+          <h2 class="simple-view-element-header">
+            {{ "item.page.country.description" | translate}} {{ object.firstMetadataValue(['dc.title']) }}
+          </h2>
+          <hr>
+          <ds-truncatable-part [minLines]="5" [showToggle]="true" [id]="'truncatable-country-description'">
+            <p class="justify-text simple-view-element-body">
+              {{ object.firstMetadataValue(['aupaps.description']) }}
+            </p>
+          </ds-truncatable-part>
+        </ds-truncatable>
+      </div>
+    </div>
   </div>
-  <ds-tabbed-related-entities-search  [item]="object"
-                                      [relationTypes]="[{
-                                          label: 'isPublicationOfCountry',
-                                          filter: 'isPublicationOfCountry',
-                                          configuration: 'default-relationships'
+  <div class="row bg-light pt-3">
+    <div class="container">
+      <ds-tabbed-related-entities-search  [item]="object" [searchEnabled]="true"
+                                          [relationTypes]="[{
+                                          label: 'isCountryOfPublication',
+                                          filter: 'isCountryOfPublication',
+                                          configuration: 'chairing-country-relationships'
                                         }]">
-  </ds-tabbed-related-entities-search>
+      </ds-tabbed-related-entities-search>
+    </div>
+  </div>
 </div>
 

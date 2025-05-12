@@ -7,6 +7,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+
+//    "resolveJsonModule": true,
+//    "esModuleInterop": true,
+
     "declaration": false,
     "downlevelIteration": true,
     "emitDecoratorMetadata": true,

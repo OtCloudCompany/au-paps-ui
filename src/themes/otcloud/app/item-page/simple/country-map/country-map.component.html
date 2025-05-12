@@ -1,9 +1,11 @@
-<div *ngIf="isBrowser && mapChartOptions">
-  <highcharts-chart
-    [Highcharts]="Highcharts"
-    [constructorType]="'mapChart'"
-    [options]="mapChartOptions"
-    style="width: 100%; display: block;"
-  ></highcharts-chart>
-</div>
+<!--<div *ngIf="isBrowser && mapChartOptions">-->
+
+<!--  <highcharts-chart-->
+<!--    [Highcharts]="Highcharts"-->
+<!--    [constructorType]="'mapChart'"-->
+<!--    [options]="mapChartOptions"-->
+<!--    style="width: 100%; display: block;"-->
+<!--  ></highcharts-chart>-->
+<!--</div>-->
+<div id="chartdiv" style="width: 100%; height: 500px" *ngIf="isBrowser"></div>
 

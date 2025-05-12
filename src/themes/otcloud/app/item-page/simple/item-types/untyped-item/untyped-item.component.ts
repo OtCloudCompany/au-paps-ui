@@ -1,29 +1,40 @@
 import '@citation-js/plugin-csl';
 import '@citation-js/plugin-bibtex';
 import '@citation-js/plugin-ris';
+
 import {
-  Cite,
-  plugins,
-} from '@citation-js/core';
-import {
-  AsyncPipe, NgForOf,
+  AsyncPipe,
+  NgForOf,
   NgIf,
 } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  Inject, OnInit,
+  Inject,
+  OnInit,
 } from '@angular/core';
 import {
   Router,
   RouterLink,
 } from '@angular/router';
+import {
+  Cite,
+  plugins,
+} from '@citation-js/core';
+import {
+  NgbModal,
+  NgbNavModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouteService } from 'src/app/core/services/route.service';
+import { UsageReportDataService } from 'src/app/core/statistics/usage-report-data.service';
+import { hasValue } from 'src/app/shared/empty.util';
 
 import { Context } from '../../../../../../../app/core/shared/context.model';
 import { Item } from '../../../../../../../app/core/shared/item.model';
 import { ViewMode } from '../../../../../../../app/core/shared/view-mode.model';
+import { UsageReport } from '../../../../../../../app/core/statistics/models/usage-report.model';
 import { ThemedMediaViewerComponent } from '../../../../../../../app/item-page/media-viewer/themed-media-viewer.component';
 import { MiradorViewerComponent } from '../../../../../../../app/item-page/mirador-viewer/mirador-viewer.component';
 import { ThemedFileSectionComponent } from '../../../../../../../app/item-page/simple/field-components/file-section/themed-file-section.component';
@@ -33,30 +44,23 @@ import { ThemedItemPageTitleFieldComponent } from '../../../../../../../app/item
 import { ItemPageUriFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/uri/item-page-uri-field.component';
 import { UntypedItemComponent as BaseComponent } from '../../../../../../../app/item-page/simple/item-types/untyped-item/untyped-item.component';
 import { ThemedMetadataRepresentationListComponent } from '../../../../../../../app/item-page/simple/metadata-representation-list/themed-metadata-representation-list.component';
+import { TabbedRelatedEntitiesSearchComponent } from '../../../../../../../app/item-page/simple/related-entities/tabbed-related-entities-search/tabbed-related-entities-search.component';
 import { DsoEditMenuComponent } from '../../../../../../../app/shared/dso-page/dso-edit-menu/dso-edit-menu.component';
 import { MetadataFieldWrapperComponent } from '../../../../../../../app/shared/metadata-field-wrapper/metadata-field-wrapper.component';
 import { listableObjectComponent } from '../../../../../../../app/shared/object-collection/shared/listable-object/listable-object.decorator';
 import { ThemedResultsBackButtonComponent } from '../../../../../../../app/shared/results-back-button/themed-results-back-button.component';
-import { ThemedThumbnailComponent } from '../../../../../../../app/thumbnail/themed-thumbnail.component';
-import { NgbModal, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
-import { RouteService } from 'src/app/core/services/route.service';
-import { UsageReportDataService } from 'src/app/core/statistics/usage-report-data.service';
-import { hasValue } from 'src/app/shared/empty.util';
-import { HighchartsChartModule } from  'highcharts-angular';
 import { TruncatableComponent } from '../../../../../../../app/shared/truncatable/truncatable.component';
+import { TruncatablePartComponent } from '../../../../../../../app/shared/truncatable/truncatable-part/truncatable-part.component';
+import { ThemedThumbnailComponent } from '../../../../../../../app/thumbnail/themed-thumbnail.component';
 import {
-  TruncatablePartComponent,
-} from '../../../../../../../app/shared/truncatable/truncatable-part/truncatable-part.component';
+  APP_CONFIG,
+  AppConfig,
+} from '../../../../../../../config/app-config.interface';
+import { CityBarChartComponent } from '../../city-bar-chart/city-bar-chart.component';
+import { CountryMapComponent } from '../../country-map/country-map.component';
+import { UsageWorldMapComponent } from '../../usage-world-map/usage-world-map.component';
+import { VisitsLineChartComponent } from '../../visits-line-chart/visits-line-chart.component';
 import { ModalContentComponent } from './modal-content/modal-content.component';
-import { HighchartsService } from 'src/themes/otcloud/app/highcharts.service';
-import { UsageReport } from '../../../../../../../app/core/statistics/models/usage-report.model';
-import worldMap from '@highcharts/map-collection/custom/world.geo.json';
-import { CountryMapComponent } from "../../country-map/country-map.component";
-import {SearchConfigurationService} from "../../../../../../../app/core/shared/search/search-configuration.service";
-import {APP_CONFIG, AppConfig} from "../../../../../../../config/app-config.interface";
-import {
-  TabbedRelatedEntitiesSearchComponent
-} from "../../../../../../../app/item-page/simple/related-entities/tabbed-related-entities-search/tabbed-related-entities-search.component";
 
 /**
  * Component that represents an untyped Item page
@@ -87,17 +91,18 @@ import {
     RouterLink,
     AsyncPipe,
     TranslateModule,
-    HighchartsChartModule,
     NgForOf,
     NgbNavModule,
     TruncatableComponent,
     TruncatablePartComponent,
     CountryMapComponent,
     TabbedRelatedEntitiesSearchComponent,
+    UsageWorldMapComponent,
+    CityBarChartComponent,
+    VisitsLineChartComponent,
   ],
 })
 export class UntypedItemComponent extends BaseComponent implements OnInit {
-  Highcharts: any;
   topCountries: UsageReport;
   topCities: UsageReport;
   countriesMapData = [];
@@ -105,9 +110,6 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
   citiesTableData = [];
   cityNames = [];
   cityViews = [];
-  chartOptions: any;
-  mapChartOptions: any;
-  citiesBarGraphOptions: Highcharts.Options;
 
   usageReport: UsageReport[] | null;
   retrievedMonths: string[] = [];
@@ -144,10 +146,8 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
     protected routeService: RouteService,
     protected router: Router,
     protected usageReportDataService: UsageReportDataService,
-    private highchartsService: HighchartsService,
     private cd: ChangeDetectorRef,
-    private searchConfigurationService: SearchConfigurationService,
-    @Inject(APP_CONFIG) protected appConfig: AppConfig,) {
+    @Inject(APP_CONFIG) protected appConfig: AppConfig) {
     super(routeService, router);
 
   }
@@ -157,7 +157,6 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
     } else {
       this.entityName = 'flatItem';
     }
-    this.Highcharts = this.highchartsService.getHighcharts();
     super.ngOnInit();
     this.itemTitle  = this.object.firstMetadataValue(['dc.title']);
     this.itemAbstract = this.object.firstMetadataValue(['dc.abstract']);
@@ -189,31 +188,35 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
           this.dataList = repo.points.map(item => item.values['views']);
         } else if (repo.reportType === 'TopCountries'){
           repo.points.forEach((item, indexNum) => {
-            this.countriesMapData.push([item.id.toLowerCase(), item.values['views']]);
-            this.countriesTableData.push({
-              'indexNum': Number(indexNum) + 1,
-              'countryLabel': item.label,
-              'value': item.values['views'],
-            });
+
+            this.countriesMapData.push([item.id.toUpperCase(), item.values['views']]);
+            if (this.countriesTableData.length < 10) {
+              this.countriesTableData.push({
+                'indexNum': Number(indexNum) + 1,
+                'countryLabel': item.label,
+                'value': item.values['views'],
+              });
+            }
           });
         } else if (repo.reportType === 'TopCities'){
           repo.points.forEach((item, indexNum) => {
             this.cityNames.push(item.label);
             this.cityViews.push(item.values['views']);
-            this.citiesTableData.push({
-              'indexNum': Number(indexNum) + 1,
-              'cityLabel': item.label,
-              'value': item.values['views'],
-            });
+            if (this.citiesTableData.length < 10){
+              this.citiesTableData.push({
+                'indexNum': Number(indexNum) + 1,
+                'cityLabel': item.label,
+                'value': item.values['views'],
+              });
+            }
+
           });
         } else if (repo.reportType === 'TotalDownloads'){
           this.totalDownloads = repo.points.reduce(
             (sum, item) => sum + Number(item.values['views']), 0);
         }
       });
-      this.setCountriesChartOptions();
-      this.setCitiesBarGraphOptions();
-      this.setChartOptions();
+
       this.reportsLoaded = true;
       this.cd.detectChanges();
     });
@@ -226,86 +229,6 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
     } else {
       return value;
     }
-  }
-  setCountriesChartOptions(){
-    this.mapChartOptions = {
-      chart: { map: 'custom/world' },
-      title: { text: 'World Map' },
-      mapNavigation: {
-        enabled: true,
-        buttonOptions: {
-          verticalAlign: 'bottom',
-        },
-      },
-      colorAxis: { min: 0 },
-      series: [
-        {
-          type: 'map',
-          name: 'Views',
-          mapData: worldMap,
-          data: this.countriesMapData,
-          dataLabels: {
-            enabled: true,
-            format: '{point.value}',
-          },
-          tooltip: {
-            pointFormat: '{point.name}: {point.value}',
-          },
-        },
-      ],
-    };
-  }
-  setCitiesBarGraphOptions() {
-
-    this.citiesBarGraphOptions = {
-      chart: { type: 'bar' },
-      title: { text: '' },
-      xAxis: {
-        categories: this.cityNames,
-        title: { text: null },
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Views',
-          align: 'high',
-        },
-        labels: { overflow: 'justify' },
-      },
-      plotOptions: {
-        bar: {
-          dataLabels: { enabled: true },
-        },
-      },
-      series: [{
-        type: 'bar',
-        name: 'Views',
-        data: this.cityViews,
-      }],
-    };
-  }
-
-  setChartOptions() {
-    this.chartOptions = {
-      title: {
-        text: '',
-      },
-      xAxis: {
-        categories: this.retrievedMonths,
-      },
-      yAxis: {
-        title: {
-          text: 'Views',
-        },
-      },
-      series: [
-        {
-          type: 'line',
-          name: 'Views',
-          data: this.dataList,
-        },
-      ],
-    };
   }
 
   generateCitations(){
