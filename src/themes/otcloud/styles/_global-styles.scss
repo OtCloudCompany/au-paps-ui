@@ -541,3 +541,10 @@ html[dir='rtl']{ // Arabic CSS
   }
 }
 
+nav#admin-sidebar div#sidebar-header-container .sidebar-fixed-element-wrapper,
+nav#admin-sidebar div#sidebar-header-container {
+  background-color: var(--au-red) !important;
+}
+nav#admin-sidebar {
+  background-color: var(--au-dark-green) !important;
+}
