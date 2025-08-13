@@ -13,17 +13,303 @@
   </ds-item-page-title-field>
   <ds-dso-edit-menu></ds-dso-edit-menu>
 </div>
-<div class="row">
-  <div class="col-xs-12 col-md-4">
-    <ng-container *ngIf="!(mediaViewer.image || mediaViewer.video)">
-      <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
-        <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
-      </ds-metadata-field-wrapper>
-    </ng-container>
-    <div *ngIf="mediaViewer.image || mediaViewer.video" class="mb-2">
-      <ds-media-viewer [item]="object"></ds-media-viewer>
+<div class="row mt-3" *ngIf="entityName === 'flatItem' || entityName === 'Publication'">
+  <div class="col-xs-12 col-md-8">
+    <ul class="nav mb-3 border-bottom">
+      <li class="nav-item hover-grey">
+        <a class="nav-link" [routerLink]="[itemPageRoute + '/full']" role="button">
+          <i class="fas fa-info-circle"></i> {{"item.page.link.full" | translate }}
+        </a>
+      </li>
+      <li class="nav-item hover-grey">
+        <a class="nav-link" href="#" role="button" (click)="modalOpen()">
+          <i class="fas fa-quote-left"></i> {{"item.page.link.cite" | translate }}
+        </a>
+      </li>
+      <li class="nav-item hover-grey dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          <i class="fas fa-share-from-square"></i> {{"item.page.link.share" | translate }}
+        </a>
+        <div class="dropdown-menu">
+          <a [href]="shareLinks.facebook" class="dropdown-item" target="_blank">
+            {{"item.page.link.facebook" | translate }}</a>
+          <a [href]="shareLinks.twitter" class="dropdown-item" target="_blank">
+            {{"item.page.link.twitter" | translate }}</a>
+          <a [href]="shareLinks.linkedin" class="dropdown-item" target="_blank">
+            {{"item.page.link.linkedin" | translate }}</a>
+          <a [href]="shareLinks.email" class="dropdown-item" target="_blank">
+            {{"item.page.link.email" | translate }}</a>
+        </div>
+      </li>
+      <li class="nav-item hover-grey dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          <i class="fas fa-bookmark"></i> {{"item.page.link.bibliographic-managers" | translate }}
+        </a>
+        <div class="dropdown-menu">
+          <a href="http://www.mendeley.com/import/?url={{ handleIdentifier }}" class="dropdown-item"
+             target="_blank">Mendeley</a>
+          <a (click)="downloadCitation('endnote')" role="button" class="dropdown-item">EndNote</a>
+          <a (click)="downloadCitation('bibtex')" role="button" class="dropdown-item">BibTex</a>
+          <a (click)="downloadCitation('csv')" class="dropdown-item">CSV</a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="abstract-field simple-view-element mb-4" *ngIf="object.hasMetadata(['dc.description.abstract'])">
+      <ds-truncatable [showToggle]="true" [id]="'truncatable-abstract'">
+        <h2 class="simple-view-element-header">{{ "item.page.abstract" | translate}}</h2>
+        <ds-truncatable-part [minLines]="4" [showToggle]="true" [id]="'truncatable-abstract'">
+          <p class="justify-text simple-view-element-body">
+            {{ object.firstMetadataValue(['dc.description.abstract']) }}
+          </p>
+        </ds-truncatable-part>
+      </ds-truncatable>
     </div>
-    <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+    <div class="row">
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.description'])">
+        <ds-generic-item-page-field [item]="object"
+                                    [fields]="['dc.description']"
+                                    [label]="'item.page.description'">
+        </ds-generic-item-page-field>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.subject'])">
+        <div class="simple-view-element mb-3">
+          <h2 class="simple-view-element-header">
+            {{ "item.page.subject" | translate }}
+          </h2>
+          <div class="simple-view-element-body">
+            <ng-container *ngFor="let mdValue of object.allMetadataValues(['dc.subject']); let last=last;">
+            <span class="dont-break-out preserve-line-breaks">
+              <a [routerLink]="['/browse/subject']" [queryParams]="{ startsWith: mdValue }">{{ mdValue }}</a>
+            </span>
+              <ng-container *ngIf="!last">
+                <span class="separator">; </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.format.extent'])">
+        <ds-generic-item-page-field [item]="object"
+                                [fields]="['dc.format.extent']"
+                                [label]="'item.page.extent'">
+        </ds-generic-item-page-field>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.format.medium'])">
+        <ds-generic-item-page-field [item]="object"
+                                [fields]="['dc.format.medium']"
+                                [label]="'item.page.format'">
+        </ds-generic-item-page-field>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.language.iso'])">
+        <div class="simple-view-element mb-3">
+          <h2 class="simple-view-element-header">
+            {{ "item.page.language" | translate }}
+          </h2>
+          <div class="simple-view-element-body">
+            <ng-container *ngFor="let mdValue of object.allMetadataValues(['dc.language.iso']); let last=last;">
+            <span class="dont-break-out preserve-line-breaks">
+              <a [routerLink]="['/browse/language']" [queryParams]="{ startsWith: mdValue }">{{ mdValue }}</a>
+            </span>
+              <ng-container *ngIf="!last">
+                <span class="separator">; </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.relation.ispartofseries'])">
+        <div class="simple-view-element mb-3">
+          <h2 class="simple-view-element-header">
+            {{ "item.page.series" | translate }}
+          </h2>
+          <div class="simple-view-element-body">
+            <ng-container *ngFor="let mdValue of object.allMetadataValues(['dc.relation.ispartofseries']); let last=last;">
+          <span class="dont-break-out preserve-line-breaks">
+            <a [routerLink]="['/browse/series']" [queryParams]="{ startsWith: mdValue }">{{ mdValue }}</a>
+          </span>
+              <ng-container *ngIf="!last">
+                <span class="separator">; </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['aupaps.identifier.reference'])">
+        <div class="simple-view-element mb-3">
+          <h2 class="simple-view-element-header">
+            {{ "item.page.reference" | translate }}
+          </h2>
+          <div class="simple-view-element-body">
+            <ng-container *ngFor="let mdValue of object.allMetadataValues(['aupaps.identifier.reference']); let last=last;">
+            <span class="dont-break-out preserve-line-breaks">
+            <a [routerLink]="['/browse/reference']" [queryParams]="{ startsWith: mdValue }">{{ mdValue }}</a>
+            </span>
+              <ng-container *ngIf="!last">
+                <span class="separator">; </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['aupaps.country'])">
+        <ds-generic-item-page-field [item]="object"
+                                [fields]="['aupaps.country']"
+                                [label]="'item.page.country'">
+        </ds-generic-item-page-field>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['aupaps.meeting.chair'])">
+        <ds-generic-item-page-field [item]="object"
+                                [fields]="['aupaps.meeting.chair']"
+                                [label]="'item.page.chair'">
+        </ds-generic-item-page-field>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['aupaps.meeting.country'])">
+        <div class="simple-view-element mb-3">
+          <h2 class="simple-view-element-header">
+            {{ "item.page.country" | translate }}
+          </h2>
+          <div class="simple-view-element-body">
+            <ng-container *ngFor="let mdValue of object.allMetadataValues(['aupaps.meeting.country']); let last=last;">
+          <span class="dont-break-out preserve-line-breaks">
+            <a [routerLink]="['/browse/country']" [queryParams]="{ startsWith: mdValue }">{{ mdValue }}</a>
+          </span>
+              <ng-container *ngIf="!last">
+                <span class="separator">; </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="object.hasMetadata(['dc.type'])">
+        <div class="simple-view-element mb-3">
+          <h2 class="simple-view-element-header">
+            {{ "item.page.type" | translate }}
+          </h2>
+          <div class="simple-view-element-body">
+            <ng-container *ngFor="let mdValue of object.allMetadataValues(['dc.type']); let last=last;">
+          <span class="dont-break-out preserve-line-breaks">
+            <a [routerLink]="['/browse/type']" [queryParams]="{ startsWith: mdValue }">{{ mdValue }}</a>
+          </span>
+              <ng-container *ngIf="!last">
+                <span class="separator">; </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12" *ngIf="object.hasMetadata(['dc.identifier.uri'])">
+        <ds-item-page-uri-field [item]="object"
+                                [fields]="['dc.identifier.uri']"
+                                [label]="'item.page.uri'">
+        </ds-item-page-uri-field>
+      </div>
+    </div>
+
+    <div class="my-4" *ngIf="reportsLoaded">
+      <h4 class="simple-view-element-header">{{ "item.page.usageStatistics" | translate }}</h4>
+      <ul ngbNav  #nav="ngbNav" class="nav-tabs">
+        <li [ngbNavItem]="1" >
+          <a ngbNavLink>{{ "item.page.visitsByMonth" | translate }}</a>
+          <ng-template ngbNavContent>
+            <div class="bg-light p-2">
+              <ds-visits-line-chart
+                [xAxisData]="retrievedMonths"
+                [yAxisData]="dataList">
+              </ds-visits-line-chart>
+            </div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2" *ngIf="countriesTableData.length > 0">
+          <a ngbNavLink>{{ "item.page.topCountries" | translate }}</a>
+          <ng-template ngbNavContent>
+            <div id="countriesMapContainer" style="width: 100%;">
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                  <thead class="bg-light">
+                  <th>#</th><th>{{ "item.page.stats.country" | translate }}</th>
+                  <th>{{ "item.page.views" | translate }}</th>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let country of countriesTableData; ">
+                    <td>{{ country['indexNum'] }}</td>
+                    <td>{{ country['countryLabel'] }}</td>
+                    <td>{{ country['value'] }}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="bg-light p-2">
+                <ds-usage-world-map *ngIf="reportsLoaded" [mapData]="countriesMapData"></ds-usage-world-map>
+              </div>
+            </div>
+
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="3" *ngIf="cityViews.length > 0">
+          <a ngbNavLink>{{ "item.page.topCities" | translate }}</a>
+          <ng-template ngbNavContent>
+            <div id="citiesMapContainer" style="width: 100%;">
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                  <thead class="bg-light">
+                  <th>#</th><th>{{ "item.page.city" | translate }}</th>
+                  <th>{{ "item.page.views" | translate }}</th>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let city of citiesTableData; ">
+                    <td>{{ city['indexNum'] }}</td>
+                    <td>{{ city['cityLabel'] }}</td>
+                    <td>{{ city['value'] }}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div><!-- .table-responsive -->
+              <div class="bg-light p-2">
+                <ds-city-bar-chart [barGraphData]="citiesTableData"></ds-city-bar-chart>
+              </div>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-3 bg-light pt-3">
+    <div class="card d-flex justify-content-center">
+      <div class="card-header">
+        <h3 class="card-title mb-0">{{ "item.page.files" | translate }}</h3>
+      </div>
+      <div class="card-body p-0">
+        <div class="text-center">
+          <ng-container *ngIf="!(mediaViewer.image || mediaViewer.video)">
+            <ds-metadata-field-wrapper [class]="'mb-0 pb-0'" [hideIfNoTextContent]="false">
+              <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+            </ds-metadata-field-wrapper>
+          </ng-container>
+          <div *ngIf="mediaViewer.image || mediaViewer.video" class="mb-2">
+            <ds-media-viewer [item]="object"></ds-media-viewer>
+          </div>
+        </div>
+        <div class="file-section-wrapper">
+          <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+        </div>
+      </div>
+    </div>
+
+    <ul class="list-group my-4" *ngIf="reportsLoaded">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ "item.page.totalViews" | translate }}
+        <span class="sr-only">{{ "item.page.totalViews" | translate }}</span>
+        <span class="badge bg-au-red badge-pill text-white">{{ totalViews }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ "item.page.totalDownloads" | translate }}
+        <span class="sr-only">{{ "item.page.totalDownloads" | translate }}</span>
+        <span class="badge bg-au-red badge-pill text-white">{{ totalDownloads }}</span>
+      </li>
+    </ul>
+
     <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
     <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
                                      [parentItem]="object"
@@ -32,49 +318,10 @@
                                      [label]="'relationships.isAuthorOf' | translate">
     </ds-metadata-representation-list>
     <ds-generic-item-page-field [item]="object"
-                                [fields]="['journal.title']"
-                                [label]="'publication.page.journal-title'">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['journal.identifier.issn']"
-                                [label]="'publication.page.journal-issn'">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['journalvolume.identifier.name']"
-                                [label]="'publication.page.volume-title'">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
                                 [fields]="['dc.publisher']"
-                                [label]="'publication.page.publisher'">
+                                [label]="'item.page.publisher'">
     </ds-generic-item-page-field>
-  </div>
-  <div class="col-xs-12 col-md-7">
-    
-    <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['dc.description']"
-                                [label]="'publication.page.description'">
-    </ds-generic-item-page-field>
-
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['dc.subject']"
-                                [separator]="', '"
-                                [label]="'item.page.subject'">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['dc.identifier.citation']"
-                                [label]="'item.page.citation'">
-    </ds-generic-item-page-field>
-    <!-- <ds-item-page-uri-field [item]="object"
-                            [fields]="['dc.identifier.uri']"
-                            [label]="'item.page.uri'">
-    </ds-item-page-uri-field> -->
-    <ds-item-page-collections [item]="object"></ds-item-page-collections>
-
-    <div>
-      <a class="btn btn-outline-primary" role="button" [routerLink]="[itemPageRoute + '/full']">
-        <i class="fas fa-info-circle"></i> {{"item.page.link.full" | translate}}
-      </a>
-    </div>
+     <ds-item-page-collections [item]="object"></ds-item-page-collections>
   </div>
 </div>
+

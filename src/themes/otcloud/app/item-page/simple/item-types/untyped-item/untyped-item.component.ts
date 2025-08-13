@@ -61,6 +61,7 @@ import { CountryMapComponent } from '../../country-map/country-map.component';
 import { UsageWorldMapComponent } from '../../usage-world-map/usage-world-map.component';
 import { VisitsLineChartComponent } from '../../visits-line-chart/visits-line-chart.component';
 import { ModalContentComponent } from './modal-content/modal-content.component';
+import { CollectionsComponent } from "src/app/item-page/field-components/collections/collections.component";
 
 /**
  * Component that represents an untyped Item page
@@ -100,7 +101,8 @@ import { ModalContentComponent } from './modal-content/modal-content.component';
     UsageWorldMapComponent,
     CityBarChartComponent,
     VisitsLineChartComponent,
-  ],
+    CollectionsComponent
+],
 })
 export class UntypedItemComponent extends BaseComponent implements OnInit {
   topCountries: UsageReport;
