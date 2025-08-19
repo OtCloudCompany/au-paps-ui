@@ -36,6 +36,7 @@
   "item.page.country": "Chairing Country",
   "item.page.stats.country": "Country",
   "item.page.country.description": "About",
+  "item.page.type": "Type",
 
   "item.page.publisher": "Publisher",
   "country.page.titleprefix": "Country Profile: ",
