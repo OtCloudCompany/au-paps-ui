@@ -50,6 +50,11 @@
                 "bundleName": "base-theme"
               },
               {
+                "input": "src/themes/custom/styles/theme.scss",
+                "inject": false,
+                "bundleName": "custom-theme"
+              },
+              {
                 "input": "src/themes/otcloud/styles/theme.scss",
                 "inject": false,
                 "bundleName": "otcloud-theme"
