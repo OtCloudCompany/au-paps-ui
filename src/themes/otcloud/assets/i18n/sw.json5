@@ -2100,7 +2100,7 @@
   "collection.source.controls.harvest.status": "Hali ya uvunaji:",
 
   // "collection.source.controls.harvest.start": "Harvest start time:",
-  "collection.source.controls.harvest.start": "Muda wa kuanza:",
+  "collection.source.controls.harvest.start": "Muda wa kuanza uvunaji:",
 
   // "collection.source.controls.harvest.last": "Last time harvested:",
   "collection.source.controls.harvest.last": "Mara ya mwisho kuvunwa:",
