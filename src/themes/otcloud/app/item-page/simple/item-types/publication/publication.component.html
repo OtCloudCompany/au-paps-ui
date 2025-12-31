@@ -206,7 +206,7 @@
       </div>
     </div>
 
-    <div class="my-4" *ngIf="reportsLoaded">
+    <div class="my-4 d-none d-sm-block" *ngIf="reportsLoaded">
       <h4 class="simple-view-element-header">{{ "item.page.usageStatistics" | translate }}</h4>
       <ul ngbNav  #nav="ngbNav" class="nav-tabs">
         <li [ngbNavItem]="1" >

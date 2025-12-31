@@ -53,7 +53,7 @@ export const africanCountries: { [code: string]: string }[] = [
   { 'tg': 'Togo' },
   { 'tn': 'Tunisia' },
   { 'ug': 'Uganda' },
-  { 'eh': 'Western Sahara' },
+  { 'eh': 'Sahrawi Arab Democratic Republic' },
   { 'zm': 'Zambia' },
   { 'zw': 'Zimbabwe' },
 ];

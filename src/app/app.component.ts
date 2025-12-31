@@ -27,7 +27,6 @@ import {
   select,
   Store,
 } from '@ngrx/store';
-import { TranslateService } from '@ngx-translate/core';
 import {
   BehaviorSubject,
   Observable,
@@ -94,9 +93,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: any,
     private themeService: ThemeService,
-    private translateService: TranslateService,
+    // private translateService: TranslateService,
     private renderer: Renderer2,
-    private translate: TranslateService,
+    // private translate: TranslateService,
     private store: Store<HostWindowState>,
     private authService: AuthService,
     private router: Router,
@@ -133,12 +132,12 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     this.dispatchWindowSize(this._window.nativeWindow.innerWidth, this._window.nativeWindow.innerHeight);
 
-    this.translateService.onLangChange.subscribe((event) => {
-      this.updateDirection(event.lang);
-    });
+    // this.translateService.onLangChange.subscribe((event) => {
+    //   this.updateDirection(event.lang);
+    // });
 
     // Initialize direction based on the current language
-    this.updateDirection(this.translateService.currentLang || 'en');
+    // this.updateDirection(this.translateService.currentLang || 'en');
   }
   updateDirection(lang: string) {
     const rtl_languages = [
