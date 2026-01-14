@@ -45,16 +45,6 @@
             "styles": [
               "src/styles/startup.scss",
               {
-                "input": "src/styles/base-theme.scss",
-                "inject": false,
-                "bundleName": "base-theme"
-              },
-              {
-                "input": "src/themes/custom/styles/theme.scss",
-                "inject": false,
-                "bundleName": "custom-theme"
-              },
-              {
                 "input": "src/themes/otcloud/styles/theme.scss",
                 "inject": false,
                 "bundleName": "otcloud-theme"

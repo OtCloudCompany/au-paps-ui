@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { EagerThemeModule as OtCloudEagerThemeModule } from './otcloud/eager-theme.module';
+import { EagerThemeModule as OtcloudEagerThemeModule } from './otcloud/eager-theme.module';
 
 /**
  * This module bundles the eager theme modules for all available themes.
@@ -11,8 +11,8 @@ import { EagerThemeModule as OtCloudEagerThemeModule } from './otcloud/eager-the
  */
 @NgModule({
   imports: [
-    OtCloudEagerThemeModule,
-  ],
+    OtcloudEagerThemeModule,
+  ]
 })
 export class EagerThemesModule {
 }

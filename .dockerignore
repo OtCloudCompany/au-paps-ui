@@ -3,6 +3,7 @@
 .vscode
 .DS_Store
 *.iml
+*.zip
 
 # Build folders
 node_modules

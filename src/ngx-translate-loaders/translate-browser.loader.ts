@@ -18,6 +18,12 @@ import {
  * A TranslateLoader for ngx-translate to retrieve i18n messages from the TransferState, or download
  * them if they're not available there
  */
+declare var __LANGUAGE_HASHES__: any;
+
+/**
+ * A TranslateLoader for ngx-translate to retrieve i18n messages from the TransferState, or download
+ * them if they're not available there
+ */
 export class TranslateBrowserLoader implements TranslateLoader {
   constructor(
     protected transferState: TransferState,
@@ -41,7 +47,26 @@ export class TranslateBrowserLoader implements TranslateLoader {
     if (hasValue(messages)) {
       return observableOf(messages);
     } else {
-      const translationHash: string = environment.production ? `.${(process.env.languageHashes as any)[lang + '.json5']}` : '';
+      let translationHash = '';
+
+      // Check if __LANGUAGE_HASHES__ is defined (injected by Webpack)
+      if (typeof __LANGUAGE_HASHES__ !== 'undefined' && __LANGUAGE_HASHES__[lang + '.json5']) {
+        translationHash = `.${__LANGUAGE_HASHES__[lang + '.json5']}`;
+      }
+      // Fallback to process.env if available (mostly for dev/test)
+      else if (typeof process !== 'undefined' && process.env && (process.env as any).languageHashes && (process.env as any).languageHashes[lang + '.json5']) {
+        translationHash = `.${(process.env as any).languageHashes[lang + '.json5']}`;
+      }
+
+      console.log('TranslateBrowserLoader:', {
+        lang,
+        production: environment.production,
+        hashes: typeof __LANGUAGE_HASHES__ !== 'undefined' ? __LANGUAGE_HASHES__ : 'undefined',
+        processHashes: (typeof process !== 'undefined' && process.env) ? (process.env as any).languageHashes : 'undefined',
+        translationHash,
+        url: `${this.prefix}${lang}${translationHash}${this.suffix}`
+      });
+
       // If they're not available on the transfer state (e.g. when running in dev mode), retrieve
       // them using HttpClient
       return this.http.get(`${this.prefix}${lang}${translationHash}${this.suffix}`, { responseType: 'text' }).pipe(

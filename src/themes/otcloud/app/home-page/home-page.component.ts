@@ -13,7 +13,6 @@ import { RecentItemListComponent } from '../../../../app/home-page/recent-item-l
 import { ThemedTopLevelCommunityListComponent } from '../../../../app/home-page/top-level-community-list/themed-top-level-community-list.component';
 import { SuggestionsPopupComponent } from '../../../../app/notifications/suggestions-popup/suggestions-popup.component';
 import { ThemedConfigurationSearchPageComponent } from '../../../../app/search-page/themed-configuration-search-page.component';
-import { ViewTrackerComponent } from '../../../../app/statistics/angulartics/dspace/view-tracker.component';
 import { CustomSidebarComponent } from './custom-sidebar/custom-sidebar.component';
 
 @Component({
@@ -21,7 +20,7 @@ import { CustomSidebarComponent } from './custom-sidebar/custom-sidebar.componen
   styleUrls: ['../../../../app/home-page/home-page.component.scss'],
   templateUrl: './home-page.component.html',
   standalone: true,
-  imports: [ThemedHomeNewsComponent, NgTemplateOutlet, NgIf, ViewTrackerComponent, ThemedTopLevelCommunityListComponent, RecentItemListComponent, AsyncPipe, TranslateModule, SuggestionsPopupComponent, ThemedConfigurationSearchPageComponent, HomeCoarComponent, CustomSidebarComponent],
+  imports: [ThemedHomeNewsComponent, NgTemplateOutlet, NgIf, ThemedTopLevelCommunityListComponent, RecentItemListComponent, AsyncPipe, TranslateModule, SuggestionsPopupComponent, ThemedConfigurationSearchPageComponent, HomeCoarComponent, CustomSidebarComponent],
 })
 export class HomePageComponent extends BaseComponent {
 

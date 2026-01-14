@@ -39,6 +39,7 @@ interface SystemJS {
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
 declare let ENV: string;
 declare let HMR: boolean;
+declare var __LANGUAGE_HASHES__: any;
 interface GlobalEnvironment {
   ENV;
   HMR;

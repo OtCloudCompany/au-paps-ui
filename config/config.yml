@@ -3,3 +3,7 @@ rest:
   host: sandbox.dspace.org
   port: 443
   nameSpace: /server
+
+ui:
+  port: 4001
+  host: localhost

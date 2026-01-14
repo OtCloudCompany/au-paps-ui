@@ -569,5 +569,3 @@ The full license is available in the [LICENSE](LICENSE) file or online at http:/
 
 DSpace uses third-party libraries which may be distributed under different licenses. Those licenses are listed
 in the [LICENSES_THIRD_PARTY](LICENSES_THIRD_PARTY) file.
-#   A f r i c a n   U n i o n   D s p a c e   8 . 1   A n g u l a r   1 7   U I  
- 

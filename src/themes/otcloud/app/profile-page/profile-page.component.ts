@@ -5,7 +5,9 @@ import {
   NgTemplateOutlet,
 } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { AlertComponent } from 'src/app/shared/alert/alert.component';
 
 import { SuggestionsNotificationComponent } from '../../../../app/notifications/suggestions-notification/suggestions-notification.component';
 import { ProfilePageComponent as BaseComponent } from '../../../../app/profile-page/profile-page.component';
@@ -35,9 +37,9 @@ import { VarDirective } from '../../../../app/shared/utils/var.directive';
     NgForOf,
     SuggestionsNotificationComponent,
     NgTemplateOutlet,
-    PaginationComponent,
+    PaginationComponent, AlertComponent,
     ThemedLoadingComponent,
-    ErrorComponent,
+    ErrorComponent, RouterModule,
   ],
 })
 /**
